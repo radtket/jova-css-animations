@@ -1,0 +1,19 @@
+.special-font-oswald {
+  font-family: $font-0, $font-1;
+}
+
+.special-font-anonymous {
+  font-family: $font-2;
+}
+
+.special-font-roboto {
+  font-family: $font-3, $font-1;
+}
+
+.clearer {
+  overflow: hidden;
+  clear: both;
+  float: none;
+  width: 100%;
+  height: 1px;
+}

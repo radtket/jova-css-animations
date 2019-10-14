@@ -2,23 +2,6 @@
   "name": "@jr-cologne/create-gulp-starter-kit",
   "version": "0.10.11-beta",
   "description": "A simple Gulp 4 Starter Kit for modern web development.",
-  "keywords": [
-    "gulp",
-    "gulp-starter-kit",
-    "sass",
-    "scss",
-    "less",
-    "stylus",
-    "pug",
-    "babel",
-    "browser-sync",
-    "autoprefixer",
-    "modern-web-dev",
-    "imagemin",
-    "sourcemaps",
-    "webpack-stream",
-    "es6-modules"
-  ],
   "scripts": {
     "start": "gulp",
     "build": "gulp build"
@@ -54,11 +37,22 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-stylus": "^2.7.0",
     "gulp-uglify": "^3.0.2",
-    "webpack-stream": "^5.2.1"
+    "webpack-stream": "^5.2.1",
+    "eslint": "^6.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "fs-extra": "^8.1.0"
+    "babel-eslint": "^10.0.3",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-jquery": "^1.5.1",
+    "fs-extra": "^8.1.0",
+    "jquery": "^3.4.1"
   },
   "engines": {
     "node": ">=8"

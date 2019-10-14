@@ -1,0 +1,464 @@
+.card-container {
+  position: relative;
+  z-index: 10;
+
+  > div {
+    transition-duration: 0.75s;
+    transition-property: width;
+    transition-delay: 0s;
+    transition-timing-function: 'ease-in-out';
+    overflow: hidden;
+    position: relative;
+    background: $white;
+    width: 0;
+
+    > div {
+      position: relative;
+      margin: 20px;
+      padding: 4px;
+
+      .frame {
+        position: absolute;
+
+        > div {
+          transition-duration: 0.75s;
+          transition-property: width, height;
+          transition-delay: 0.75s;
+          transition-timing-function: 'ease-in-out';
+          overflow: hidden;
+          position: absolute;
+          background: $color-rangoon-green;
+        }
+
+        &.top {
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 4px;
+
+          > div {
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+          }
+        }
+
+        &.right {
+          right: 0;
+          top: 0;
+          width: 4px;
+          height: 100%;
+
+          > div {
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 0;
+          }
+        }
+
+        &.bottom {
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 4px;
+
+          > div {
+            right: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+          }
+        }
+
+        &.left {
+          left: 0;
+          bottom: 0;
+          width: 4px;
+          height: 100%;
+
+          > div {
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 0;
+          }
+        }
+      }
+
+      .border {
+        position: absolute;
+        z-index: 15;
+
+        > div {
+          transition-duration: 0.75s;
+          transition-property: width, height;
+          transition-delay: 1s;
+          transition-timing-function: 'ease-in-out';
+          overflow: hidden;
+          position: absolute;
+          background: $color-chicago;
+        }
+
+        &.top {
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 2px;
+
+          > div {
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+          }
+        }
+
+        &.right {
+          right: 0;
+          top: 0;
+          width: 2px;
+          height: 100%;
+
+          > div {
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 0;
+          }
+        }
+
+        &.bottom {
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          height: 2px;
+
+          > div {
+            right: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+          }
+        }
+
+        &.left {
+          left: 0;
+          bottom: 0;
+          width: 2px;
+          height: 100%;
+
+          > div {
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 0;
+          }
+        }
+      }
+
+      .content {
+        position: relative;
+      }
+    }
+  }
+
+  &.home {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -278px;
+    margin-top: -168px;
+    width: 557px;
+    z-index: 50;
+    cursor: default;
+
+    h2 {
+      position: relative;
+      width: 100%;
+
+      .logo {
+        display: block;
+        text-indent: -5000px;
+        background: $url-4 no-repeat 0 0;
+        height: 118px;
+      }
+
+      .btn-lang {
+        font-family: $font-0, $font-1;
+        display: block;
+        position: absolute;
+        left: 40px;
+        top: 0;
+        color: $color-rangoon-green;
+        font-size: 13px;
+        text-transform: uppercase;
+        margin: 13px 20px;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+          border-color: $color-rangoon-green;
+        }
+      }
+    }
+
+    h3 {
+      transition-duration: 0.45s;
+      transition-property: color;
+      transition-delay: 1.35s;
+      transition-timing-function: 'ease-in-out';
+      overflow: hidden;
+      position: relative;
+      color: transparent;
+      padding-bottom: 1px;
+      background: $url-5 no-repeat 261px 12px;
+
+      > span {
+        font-family: $font-0, $font-1;
+        display: block;
+        font-size: 14px;
+        text-transform: uppercase;
+        line-height: 40px;
+        letter-spacing: 0.65em;
+
+        &.left {
+          float: left;
+          padding-left: 35px;
+        }
+
+        &.right {
+          float: right;
+          padding-right: 35px;
+        }
+      }
+
+      .border > div {
+        transition-delay: 1.1s;
+      }
+    }
+
+    .menu {
+      overflow: hidden;
+      margin: 0 59px;
+
+      > li {
+        float: left;
+        position: relative;
+
+        > a {
+          transition-duration: 0.45s;
+          transition-property: opacity;
+          transition-delay: 1.45s;
+          transition-timing-function: 'ease-in-out';
+          display: block;
+          overflow: hidden;
+          position: relative;
+          color: $color-rangoon-green;
+          height: 65px;
+          z-index: 1;
+          opacity: 0;
+          filter: alpha(opacity=0);
+
+          > span {
+            &::before {
+              text-align: center;
+              padding: 0;
+            }
+
+            .small {
+              font-family: $font-0, $font-1;
+              display: block;
+              position: absolute;
+              left: 10px;
+              top: 7px;
+              font-size: 8px;
+              text-transform: uppercase;
+              letter-spacing: 0.1em;
+            }
+
+            .big {
+              transition-duration: 0.45s;
+              transition-property: margin-top, background;
+              transition-delay: 0s;
+              transition-timing-function: 'ease-in-out';
+              display: block;
+              position: relative;
+              font-size: 15px;
+              text-align: center;
+              line-height: 50px;
+
+              > span {
+                font-family: $font-2;
+                display: block;
+                font-size: 17px;
+                padding: 15px 0 0;
+                white-space: nowrap;
+              }
+            }
+          }
+        }
+
+        &:nth-child(1) {
+          width: 33%;
+        }
+
+        &:nth-child(2) {
+          width: 22%;
+
+          > a {
+            transition-delay: 1.55s;
+          }
+
+          .border > div {
+            transition-delay: 1.3s;
+          }
+        }
+
+        &:nth-child(3) {
+          width: 45%;
+
+          > a {
+            transition-delay: 1.65s;
+          }
+
+          .border > div {
+            transition-delay: 1.4s;
+          }
+        }
+
+        &:nth-child(4) {
+          width: 50%;
+
+          > a {
+            transition-delay: 1.75s;
+          }
+
+          .border > div {
+            transition-delay: 1.5s;
+          }
+        }
+
+        &:nth-child(5) {
+          width: 50%;
+
+          > a {
+            transition-delay: 1.85s;
+          }
+
+          .border > div {
+            transition-delay: 1.6s;
+          }
+        }
+
+        .border > div {
+          transition-delay: 1.2s;
+        }
+      }
+    }
+
+    &.loaded {
+      .menu > li > a {
+        opacity: 1;
+        filter: alpha(opacity=100);
+      }
+
+      .btn-previous {
+        .small {
+          color: $color-rangoon-green;
+        }
+      }
+
+      .btn-next {
+        .small {
+          color: $color-rangoon-green;
+        }
+      }
+    }
+
+    .btn-previous {
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background: $url-1 repeat-x center 54px;
+      width: 59px;
+      height: 130px;
+
+      .small {
+        transition-duration: 0.45s;
+        transition-property: color;
+        transition-delay: 1.25s;
+        transition-timing-function: 'ease-in-out';
+        font-family: $font-0, $font-1;
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 7px;
+        color: transparent;
+        font-size: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      &:hover {
+        background-position: -58px 54px;
+      }
+    }
+
+    .btn-next {
+      display: block;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      background: $url-2 repeat-x center 54px;
+      width: 59px;
+      height: 130px;
+
+      .small {
+        transition-duration: 0.45s;
+        transition-property: color;
+        transition-delay: 1.25s;
+        transition-timing-function: 'ease-in-out';
+        font-family: $font-0, $font-1;
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 7px;
+        color: transparent;
+        font-size: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      &:hover {
+        background-position: 58px 54px;
+      }
+    }
+
+    > div > div {
+      width: 509px;
+      height: 289px;
+    }
+  }
+
+  &.loaded > div {
+    width: 100%;
+
+    > div {
+      .frame > div {
+        width: 100%;
+        height: 100%;
+      }
+
+      .border > div {
+        width: 100%;
+        height: 100%;
+      }
+
+      .content > * {
+        color: $color-rangoon-green;
+      }
+    }
+  }
+}

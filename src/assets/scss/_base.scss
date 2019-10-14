@@ -1,0 +1,21 @@
+html {
+  color: $color-rangoon-green;
+  font-size: 12px;
+  background: $color-cararra;
+}
+
+::-moz-selection {
+  background-color: $color-twine-30 !important;
+}
+
+::selection {
+  background-color: $color-twine-30 !important;
+}
+
+a {
+  @extend %extend-1;
+
+  span {
+    @extend %extend-1;
+  }
+}

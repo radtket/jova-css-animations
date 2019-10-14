@@ -1,0 +1,61 @@
+.text-grid {
+  position: relative;
+
+  > .line {
+    overflow: hidden;
+    margin-left: -4.5%;
+    margin-bottom: 20px;
+    width: 100%;
+
+    &.loaded {
+      > div {
+        > span {
+          padding-top: 0;
+        }
+      }
+    }
+
+    > div {
+      float: left;
+      position: relative;
+      width: 9.09%;
+      height: 100px;
+
+      > span {
+        transition-duration: 0.45s;
+        transition-property: padding-top;
+        transition-delay: 0s;
+        transition-timing-function: 'ease-in-out';
+        font-family: $font-0, $font-1;
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        color: $color-twine;
+        font-size: 70px;
+        text-align: center;
+        text-transform: uppercase;
+        line-height: 100px;
+        margin-top: -50px;
+        padding-top: 100%;
+        width: 100%;
+
+        @media (max-width: 1380px) {
+          font-size: 50px;
+        }
+      }
+
+      &.white > span {
+        color: $color-mercury;
+      }
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i + 1}) {
+          > span {
+            transition-delay: $i * 0.1s;
+          }
+        }
+      }
+    }
+  }
+}
