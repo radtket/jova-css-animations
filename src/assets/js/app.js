@@ -1,5 +1,6 @@
 import whichBrowser from './modules/whichBrowser';
 import initializeMap from './modules/initializeMap';
+
 const $wrapper = $('#wrapper');
 const $btnHeader = $('#header_btn-menu');
 const $header = $('#header');
@@ -17,6 +18,23 @@ var infiniteSliderSquares;
 const currentBrowser = whichBrowser();
 var aboutTimeout;
 
+const triggerScroll = sectionId => {
+	if (window.location.hash !== '') {
+		const $target = $(sectionId + window.location.hash.replace('#', ''));
+		const scroll = Math.abs(currentScroll - $target.offset().top);
+		const scrollTop = $target.offset().top;
+		const scrollTime = scroll * 0.5;
+
+		$('html,body').animate(
+			{ scrollTop },
+			scrollTime < 1250 ? 1250 : scrollTime,
+			'easeInOutQuad'
+		);
+	}
+};
+
+const isLoaded = qs => qs.addClass('loaded');
+
 $('html,body').scrollTop(0);
 
 function scrollContent() {
@@ -26,11 +44,11 @@ function scrollContent() {
 	// Loading
 	if (!isMobile) {
 		$toLoad.each(function() {
-			var object = $(this);
+			const object = $(this);
 
 			if (newScroll + $(window).height() * 0.85 > $(this).offset().top) {
 				object.removeClass('no-anim');
-				object.addClass('loaded');
+				isLoaded(object);
 			} else if (newScroll + $(window).height() < $(this).offset().top) {
 				object.addClass('no-anim');
 				object.removeClass('loaded');
@@ -86,12 +104,11 @@ function scrollContent() {
 
 				// Reload
 				const object = $(this);
-				console.log({ object });
 				object.addClass('active');
 				clearTimeout(aboutTimeout);
 				aboutTimeout = setTimeout(() => {
 					$('.text-grid', object).addClass('visible');
-					$('.text-grid .line', object).addClass('loaded');
+					isLoaded($('.text-grid .line', object));
 				}, 750);
 			}
 		});
@@ -176,14 +193,14 @@ function scrollContent() {
 	$('#tips .sidebar').each(function() {
 		var newPos = newScroll;
 		if (
-			newScroll + $(this).height() + parseInt($(this).css('top')) >
+			newScroll + $(this).height() + parseInt($(this).css('top'), 10) >
 			$('#block1').height() - 210
 		)
 			newPos =
 				newScroll -
 				(newScroll +
 					$(this).height() +
-					parseInt($(this).css('top')) -
+					parseInt($(this).css('top'), 10) -
 					($('#block1').height() - 210));
 
 		$(this).css({
@@ -220,7 +237,7 @@ function scrollContent() {
 	});
 
 	// Demask Footer
-	$footer.each(function() {
+	$footer.each(() => {
 		let tempScroll = 220;
 		if (newScroll > totalScroll - 220)
 			tempScroll = 220 - (newScroll - (totalScroll - 220));
@@ -373,8 +390,11 @@ $(window).load(() => {
 
 	// Slider Squares
 	$('#slider-container-squares').each(function() {
-		if (currentBrowser == 'Safari' || isMobile) $(this).addClass('t-scale');
-		else $(this).addClass('t-translate');
+		if (currentBrowser == 'Safari' || isMobile) {
+			$(this).addClass('t-scale');
+		} else {
+			$(this).addClass('t-translate');
+		}
 
 		infiniteSliderSquares = new InfiniteSliderHome(
 			$(this),
@@ -420,6 +440,7 @@ $(window).load(() => {
 		function() {
 			var object = $(this);
 			var delay = 1;
+
 			if (currentScroll > 0) {
 				delay = 750;
 				$('html,body').animate({ scrollTop: 0 }, 750, 'easeInOutQuad');
@@ -588,9 +609,9 @@ $(window).load(() => {
 
 	// Init Maps
 	$('#contact .map > div').each(function() {
-		var latitude = parseFloat($(this).attr('data-latitude'));
-		var longitude = parseFloat($(this).attr('data-longitude'));
-		var mapID = $(this).attr('id');
+		const latitude = parseFloat($(this).attr('data-latitude'));
+		const longitude = parseFloat($(this).attr('data-longitude'));
+		const mapID = $(this).attr('id');
 
 		initializeMap(latitude, longitude, mapID);
 	});
@@ -604,109 +625,100 @@ $(window).load(() => {
 	$('#loading-mask').fadeOut(750, function() {
 		// Init Header
 		setTimeout(() => {
-			$btnHeader.addClass('loaded');
+			isLoaded($btnHeader);
 		}, 450);
 
 		// Init Homepage
 		$('#homepage').each(() => {
 			setTimeout(() => {
-				$('#block1 .card-container').addClass('loaded');
+				isLoaded($('#block1 .card-container'));
 				setTimeout(() => {
-					$('.btn-scroll-down').addClass('loaded');
-					if (isMobile) $('.to-load').addClass('loaded');
+					isLoaded($('.btn-scroll-down'));
+					if (isMobile) {
+						isLoaded($('.to-load'));
+					}
 				}, 1500);
 			}, 750);
 		});
 
 		// Init About
-		$('#about').each(function() {
+		$('#about').each(() => {
 			$('#block1').addClass('active');
 			$('#block1 .text-grid').addClass('visible');
-			$('#block1 .text-grid .line').addClass('loaded');
-			setTimeout(function() {
-				$('.img').addClass('loaded');
+			isLoaded($('#block1 .text-grid .line'));
+			setTimeout(() => {
+				isLoaded($('.img'));
 			}, 250);
-			setTimeout(function() {
-				$('#block1 .card-container').addClass('loaded');
-				setTimeout(function() {
-					$('.btn-scroll-down').addClass('loaded');
-					if (isMobile) $('.to-load').addClass('loaded');
+			setTimeout(() => {
+				isLoaded($('#block1 .card-container'));
+
+				setTimeout(() => {
+					isLoaded($('.btn-scroll-down'));
+
+					if (isMobile) {
+						isLoaded($('.to-load'));
+					}
 				}, 1500);
-				if (window.location.hash != '') {
-					var anchor = window.location.hash.replace('#', '');
-					var $target = $('#block' + anchor);
-					var scroll = Math.abs(currentScroll - $target.offset().top);
-					var scrollVal = $target.offset().top;
 
-					var scrollTime = scroll * 0.5;
-					if (scrollTime < 1250) scrollTime = 1250;
-
-					$('html,body').animate(
-						{ scrollTop: scrollVal },
-						scrollTime,
-						'easeInOutQuad'
-					);
-				}
+				triggerScroll('#block');
 			}, 750);
 		});
 
 		// Init Services
-		$('#services').each(function() {
-			setTimeout(function() {
-				$('#block1 .card-container').addClass('loaded');
-				setTimeout(function() {
-					$('.btn-scroll-down').addClass('loaded');
-					if (isMobile) $('.to-load').addClass('loaded');
+		$('#services').each(() => {
+			setTimeout(() => {
+				isLoaded($('#block1 .card-container'));
+				setTimeout(() => {
+					isLoaded($('.btn-scroll-down'));
+					if (isMobile) {
+						isLoaded($('.to-load'));
+					}
 				}, 1500);
 			}, 750);
 		});
 
 		// Init Portfolio
-		$('#portfolio').each(function() {
-			setTimeout(function() {
-				$('#block1 > .centered .framed-block').addClass('loaded');
-				if (isMobile) $('.to-load').addClass('loaded');
+		$('#portfolio').each(() => {
+			setTimeout(() => {
+				isLoaded($('#block1 > .centered .framed-block'));
+
+				if (isMobile) {
+					isLoaded($('.to-load'));
+				}
 			}, 950);
 		});
 
 		// Init Gallery
-		$('#gallery').each(function() {
-			setTimeout(function() {
-				$('#slider-container-squares .card-container').addClass('loaded');
-				if (isMobile) $('.to-load').addClass('loaded');
+		$('#gallery').each(() => {
+			setTimeout(() => {
+				isLoaded($('#slider-container-squares .card-container'));
+
+				if (isMobile) {
+					isLoaded($('.to-load'));
+				}
 			}, 750);
 		});
 
 		// Init Contact
 		$('#contact').each(() => {
 			setTimeout(() => {
-				$('#block1 > .centered .framed-block').addClass('loaded');
-				if (isMobile) $('.to-load').addClass('loaded');
+				isLoaded($('#block1 > .centered .framed-block'));
+				if (isMobile) {
+					isLoaded($('.to-load'));
+				}
 			}, 950);
 		});
 
 		// Init Tips
-		$('#tips').each(function() {
-			setTimeout(function() {
-				$('#block1 .bullet').addClass('loaded');
-				setTimeout(function() {
-					$('#block1 .sidebar .card-container').addClass('loaded');
-					if (isMobile) $('.to-load').addClass('loaded');
-					if (window.location.hash != '') {
-						var anchor = window.location.hash.replace('#', '');
-						var $target = $('#tips' + anchor);
-						var scroll = Math.abs(currentScroll - $target.offset().top);
-						var scrollVal = $target.offset().top;
-
-						var scrollTime = scroll * 0.5;
-						if (scrollTime < 1250) scrollTime = 1250;
-
-						$('html,body').animate(
-							{ scrollTop: scrollVal },
-							scrollTime,
-							'easeInOutQuad'
-						);
+		$('#tips').each(() => {
+			setTimeout(() => {
+				isLoaded($('#block1 .bullet'));
+				setTimeout(() => {
+					isLoaded($('#block1 .sidebar .card-container'));
+					if (isMobile) {
+						isLoaded($('.to-load'));
 					}
+					triggerScroll('#tips');
 				}, 100);
 			}, 250);
 		});

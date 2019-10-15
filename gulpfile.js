@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /**
  * A simple Gulp 4 Starter Kit for modern web development.
  *
@@ -22,8 +23,6 @@ const del = require('del');
 const sourcemaps = require('gulp-sourcemaps');
 const plumber = require('gulp-plumber');
 const sass = require('gulp-sass');
-const less = require('gulp-less');
-const stylus = require('gulp-stylus');
 const autoprefixer = require('gulp-autoprefixer');
 const minifyCss = require('gulp-clean-css');
 const babel = require('gulp-babel');
@@ -32,7 +31,6 @@ const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const imagemin = require('gulp-imagemin');
 const browserSync = require('browser-sync').create();
-const pug = require('gulp-pug');
 
 const src_folder = './src/';
 const src_assets_folder = src_folder + 'assets/';
@@ -140,9 +138,11 @@ gulp.task('dev', gulp.series('html', 'sass', 'js'));
 
 gulp.task('serve', () => {
 	return browserSync.init({
-		server: {
-			baseDir: ['dist'],
-		},
+		server: './dist',
+		startPath: '/index.html', // After it browser running
+		browser: 'chrome',
+		host: 'localhost',
+		tunnel: true,
 		port: 3000,
 		open: false,
 	});
