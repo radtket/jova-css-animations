@@ -1,80 +1,65 @@
 import scrollContent from './scrollContent';
+var $wrapper = $('#wrapper');
+var $footer = $('#footer');
+var $valign = $('.valign');
+var $fullHeight = $('.full-height');
+var $imgFit = $('.img-fit');
 
-function positionContent(
-	isMobile,
-	aboutTimeout,
-	infiniteSliderSquares,
-	currentScroll
-) {
+function positionContent() {
 	// Full Height
-	const wrapper = document.querySelector('#wrapper');
-	const footer = document.querySelector('#footer');
-	const fullHeight = document.querySelector('.full-height');
-
-	const windowHeight = `${window.innerHeight}px`;
-	fullHeight.style.height = windowHeight;
-
-	// ! Can't Find
-	// $('.divided-block').each(function() {
-	// 	$('.centered > div', this).css('min-height', windowHeight);
-	// });
+	$fullHeight.height($(window).height());
+	$('.divided-block').each(function() {
+		$('.centered > div', this).css('min-height', $(window).height());
+	});
 
 	// Centered Vertically
-	// ! only on services-offered.htnl
-	// $('.valign').each(function() {
-	// 	$(this).css(
-	// 		'padding-top',
-	// 		$(this)
-	// 			.parent()
-	// 			.height() /
-	// 			2 -
-	// 			$(this).height() / 2
-	// 	);
-	// });
+	$valign.each(function() {
+		$(this).css(
+			'padding-top',
+			$(this)
+				.parent()
+				.height() /
+				2 -
+				$(this).height() / 2
+		);
+	});
 
 	// Fit Images
-	// $('.img-fit').each(function() {
-	// 	var bgMain = $(this);
-	// 	var wrapper = $(this).parent();
-	// 	var wrapperWidth = wrapper.width();
-	// 	if ($(this).parents('.section-header').length == 0 && wrapperWidth < 1920)
-	// 		wrapperWidth = 1920;
-	// 	var wrapperHeight = wrapper.height();
+	$imgFit.each(function() {
+		var bgMain = $(this);
+		var wrapper = $(this).parent();
+		var wrapperWidth = wrapper.width();
+		if ($(this).parents('.section-header').length == 0 && wrapperWidth < 1920)
+			wrapperWidth = 1920;
+		var wrapperHeight = wrapper.height();
 
-	// 	var bgMainSizes = $(this)
-	// 		.attr('data-size')
-	// 		.split('|');
-	// 	var bgMainRatio = bgMainSizes[0] / bgMainSizes[1];
-	// 	var wrapperRatio = wrapperWidth / wrapperHeight;
+		var bgMainSizes = $(this)
+			.attr('data-size')
+			.split('|');
+		var bgMainRatio = bgMainSizes[0] / bgMainSizes[1];
+		var wrapperRatio = wrapperWidth / wrapperHeight;
 
-	// 	if (bgMainRatio > wrapperRatio) {
-	// 		bgMain
-	// 			.height(wrapperHeight)
-	// 			.width(wrapperHeight * bgMainRatio)
-	// 			.css('left', wrapperWidth / 2 - (wrapperHeight * bgMainRatio) / 2);
-	// 		// .css('top','0');
-	// 	} else {
-	// 		bgMain
-	// 			.width(wrapperWidth)
-	// 			.height(wrapperWidth / bgMainRatio)
-	// 			.css('left', '0');
-	// 		// .css('top',(wrapperHeight/2 - (wrapperWidth / bgMainRatio)/2));
-	// 	}
-	// });
+		if (bgMainRatio > wrapperRatio) {
+			bgMain
+				.height(wrapperHeight)
+				.width(wrapperHeight * bgMainRatio)
+				.css('left', wrapperWidth / 2 - (wrapperHeight * bgMainRatio) / 2);
+			// .css('top','0');
+		} else {
+			bgMain
+				.width(wrapperWidth)
+				.height(wrapperWidth / bgMainRatio)
+				.css('left', '0');
+			// .css('top',(wrapperHeight/2 - (wrapperWidth / bgMainRatio)/2));
+		}
+	});
 
 	// Adjust Text Grids
+	$('.text-grid').each(function() {
+		var model = $('.line:eq(0) > div:eq(0)', this).width();
 
-	Array.from(document.querySelectorAll('.text-grid')).forEach(item => {
-		const model = item.querySelector('.line:first-child > div:first-child')
-			.offsetWidth;
-
-		Array.from(item.querySelectorAll('.line > div')).forEach(line => {
-			const { style } = line;
-			style.height = `${model}px`;
-		});
-
-		const { style } = item;
-		style.marginTop = `${-model / 2}px`;
+		$('.line > div', this).height(model);
+		$(this).css('margin-top', -model / 2);
 	});
 
 	// Portfolio
@@ -123,10 +108,10 @@ function positionContent(
 		);
 	});
 
-	const { offsetHeight: footerHeight } = footer;
-	wrapper.style.paddingBottom = `${footerHeight}px`;
+	// Resize Footer
+	$wrapper.css('padding-bottom', $footer.height());
 
-	scrollContent(isMobile, aboutTimeout, infiniteSliderSquares, currentScroll);
+	scrollContent();
 }
 
 export default positionContent;
