@@ -1,5 +1,12 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-return-assign */
+import $ from 'jquery';
+
 import whichBrowser from './modules/whichBrowser';
 import initializeMap from './modules/initializeMap';
+import InfiniteSliderHome from './modules/infiniteSliderHome';
+import InfiniteSlider from './modules/infiniteSlider';
 
 const $wrapper = $('#wrapper');
 const $btnHeader = $('#header_btn-menu');
@@ -14,7 +21,7 @@ const $parallaxIcon = $('.parallax-icon');
 let isMobile = false;
 let isAnimationRunning = false;
 var currentScroll = -1;
-var infiniteSliderSquares;
+let infiniteSliderSquares;
 const currentBrowser = whichBrowser();
 var aboutTimeout;
 
@@ -38,18 +45,21 @@ const isLoaded = qs => qs.addClass('loaded');
 $('html,body').scrollTop(0);
 
 function scrollContent() {
-	var totalScroll = $(document).height() - $(window).height();
+	const totalScroll = $(document).height() - $(window).height();
 	var newScroll = $(window).scrollTop();
 
 	// Loading
 	if (!isMobile) {
 		$toLoad.each(function() {
 			const object = $(this);
+			const offset = object.offset().top;
+			const windowHeight = $(window).height();
+			const scrollHeight = newScroll + windowHeight;
 
-			if (newScroll + $(window).height() * 0.85 > $(this).offset().top) {
+			if (scrollHeight * 0.85 > offset) {
 				object.removeClass('no-anim');
 				isLoaded(object);
-			} else if (newScroll + $(window).height() < $(this).offset().top) {
+			} else if (scrollHeight < offset) {
 				object.addClass('no-anim');
 				object.removeClass('loaded');
 			}
@@ -62,8 +72,8 @@ function scrollContent() {
 			let textScroll = $(this).offset().top - newScroll;
 			let tempScroll = $(this).offset().top - newScroll;
 			const parallaxHeight = $(this).height();
-			// Get Percentage
 			let percTranslate = tempScroll / parallaxHeight;
+
 			// Set Limits
 			if (tempScroll < -parallaxHeight) {
 				tempScroll = -parallaxHeight;
@@ -142,13 +152,12 @@ function scrollContent() {
 
 	// Scroll Slider Squares
 	$('.no-slider').each(function() {
-		var sliderPos = 0;
 		const windowHeight = $(window).height();
 		const fromBottom = $(this).offset().top;
-
-		if (newScroll + windowHeight > fromBottom) {
-			sliderPos = fromBottom - (newScroll + windowHeight);
-		}
+		const sliderPos =
+			newScroll + windowHeight > fromBottom
+				? fromBottom - (newScroll + windowHeight)
+				: 0;
 
 		$('#slider-container-squares').css('top', sliderPos);
 		$('#slider-container-squares .slider').css({ top: -sliderPos * 0.75 });
@@ -182,10 +191,12 @@ function scrollContent() {
 	});
 
 	$('#slider-container-squares').each(function() {
-		if (newScroll > 10) {
-			infiniteSliderSquares.stop(infiniteSliderSquares);
-		} else {
-			infiniteSliderSquares.start(infiniteSliderSquares);
+		if (infiniteSliderSquares.running !== undefined) {
+			if (newScroll > 10) {
+				infiniteSliderSquares.running = false;
+			} else {
+				infiniteSliderSquares.running = true;
+			}
 		}
 	});
 
@@ -281,6 +292,11 @@ function positionContent() {
 			.split('|');
 		let bgMainRatio = bgMainSizes[0] / bgMainSizes[1];
 		let wrapperRatio = wrapperWidth / wrapperHeight;
+
+		console.log(
+			backgroundMain.parents('.section-header'),
+			$(this).parents('.section-header')
+		);
 
 		if ($(this).parents('.section-header').length == 0 && wrapperWidth < 1920) {
 			wrapperWidth = 1920;

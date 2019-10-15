@@ -150,14 +150,14 @@ function scrollContent(
 	$('#tips .sidebar').each(function() {
 		var newPos = newScroll;
 		if (
-			newScroll + $(this).height() + parseInt($(this).css('top')) >
+			newScroll + $(this).height() + parseInt($(this).css('top'), 10) >
 			$('#block1').height() - 210
 		)
 			newPos =
 				newScroll -
 				(newScroll +
 					$(this).height() +
-					parseInt($(this).css('top')) -
+					parseInt($(this).css('top'), 10) -
 					($('#block1').height() - 210));
 
 		$(this).css({

@@ -74,6 +74,12 @@ gulp.task('sass', () => {
 		.pipe(browserSync.stream());
 });
 
+gulp.task('modernizr', () => {
+	return gulp
+		.src(`${src_assets_folder}/js/modernizr.custom.js`)
+		.pipe(gulp.dest(dist_assets_folder + 'js'));
+});
+
 gulp.task('js', () => {
 	return gulp
 		.src([src_assets_folder + 'js/**/*.js'], { since: gulp.lastRun('js') })
@@ -131,7 +137,7 @@ gulp.task('vendor', () => {
 
 gulp.task(
 	'build',
-	gulp.series('clear', 'html', 'sass', 'js', 'images', 'vendor')
+	gulp.series('clear', 'html', 'sass', 'modernizr', 'js', 'images', 'vendor')
 );
 
 gulp.task('dev', gulp.series('html', 'sass', 'js'));
