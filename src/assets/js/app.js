@@ -41,19 +41,26 @@ function scrollContent() {
 	// Parallax
 	if (!isMobile) {
 		$parallax.each(function() {
-			var textScroll = $(this).offset().top - newScroll;
-			var tempScroll = $(this).offset().top - newScroll;
-			// Set Limits
-			if (tempScroll < -$(this).height()) tempScroll = -$(this).height();
-			if (tempScroll > $(this).height()) tempScroll = $(this).height();
+			let textScroll = $(this).offset().top - newScroll;
+			let tempScroll = $(this).offset().top - newScroll;
+			const parallaxHeight = $(this).height();
 			// Get Percentage
-			var percTranslate = tempScroll / $(this).height();
+			let percTranslate = tempScroll / parallaxHeight;
+			// Set Limits
+			if (tempScroll < -parallaxHeight) {
+				tempScroll = -parallaxHeight;
+			}
+
+			if (tempScroll > parallaxHeight) {
+				tempScroll = parallaxHeight;
+			}
 
 			// Cards and Images
 			$('.card-container.card2', this).css({
 				transform: 'translate(0, ' + 150 * -percTranslate + 'px)',
 				'-webkit-transform': 'translate(0, ' + 150 * -percTranslate + 'px)',
 			});
+
 			$('.img', this).css({
 				transform: 'translate(0, ' + 550 * -percTranslate + 'px)',
 				'-webkit-transform': 'translate(0, ' + 550 * -percTranslate + 'px)',
@@ -76,8 +83,10 @@ function scrollContent() {
 				$parallax.removeClass('active');
 				$('.text-grid', $parallax).removeClass('visible');
 				$('.text-grid .line', $parallax).removeClass('loaded');
+
 				// Reload
-				var object = $(this);
+				const object = $(this);
+				console.log({ object });
 				object.addClass('active');
 				clearTimeout(aboutTimeout);
 				aboutTimeout = setTimeout(() => {
@@ -91,26 +100,22 @@ function scrollContent() {
 	// Parallax Icons
 	if (!isMobile) {
 		$parallaxIcon.each(function() {
-			var textScroll =
-				($(this)
+			const scrollBase =
+				$(this)
 					.parent()
 					.offset().top -
-					(newScroll + $(window).height())) *
-				0.5;
-			if ($(this).hasClass('icon-2'))
-				textScroll =
-					($(this)
-						.parent()
-						.offset().top -
-						(newScroll + $(window).height())) *
-					0.75;
-			if ($(this).hasClass('icon-10'))
-				textScroll =
-					($(this)
-						.parent()
-						.offset().top -
-						(newScroll + $(window).height())) *
-					0.25;
+				(newScroll + $(window).height());
+
+			let textScroll = scrollBase * 0.5;
+
+			if ($(this).hasClass('icon-2')) {
+				textScroll = scrollBase * 0.75;
+			}
+
+			if ($(this).hasClass('icon-10')) {
+				textScroll = scrollBase * 0.25;
+			}
+
 			$(this).css({
 				transform: 'translate(0, ' + -textScroll + 'px)',
 				'-webkit-transform': 'translate(0, ' + -textScroll + 'px)',
@@ -121,8 +126,12 @@ function scrollContent() {
 	// Scroll Slider Squares
 	$('.no-slider').each(function() {
 		var sliderPos = 0;
-		if (newScroll + $(window).height() > $(this).offset().top)
-			sliderPos = $(this).offset().top - (newScroll + $(window).height());
+		const windowHeight = $(window).height();
+		const fromBottom = $(this).offset().top;
+
+		if (newScroll + windowHeight > fromBottom) {
+			sliderPos = fromBottom - (newScroll + windowHeight);
+		}
 
 		$('#slider-container-squares').css('top', sliderPos);
 		$('#slider-container-squares .slider').css({ top: -sliderPos * 0.75 });
@@ -136,22 +145,31 @@ function scrollContent() {
 			// Hide Header
 			if (newScroll < tempHeader.offset().top + tempHeader.height()) {
 				$btnHeader.addClass('no-menu');
-				if ($header.hasClass('opened')) $header.trigger('click');
+
+				if ($header.hasClass('opened')) {
+					$header.trigger('click');
+				}
 			}
+
 			// Show Header
-			else if (!$header.hasClass('opened')) $btnHeader.removeClass('no-menu');
+			else if (!$header.hasClass('opened')) {
+				$btnHeader.removeClass('no-menu');
+			}
 		});
 	}
 
 	// Homepage Blur
 	$('#slider-container-squares .active .blur').each(function() {
-		var tempOpacity = (newScroll * 1.5) / $(window).height();
+		const tempOpacity = (newScroll * 1.5) / $(window).height();
 		$(this).css('opacity', tempOpacity);
 	});
 
 	$('#slider-container-squares').each(function() {
-		if (newScroll > 10) infiniteSliderSquares.stop(infiniteSliderSquares);
-		else infiniteSliderSquares.start(infiniteSliderSquares);
+		if (newScroll > 10) {
+			infiniteSliderSquares.stop(infiniteSliderSquares);
+		} else {
+			infiniteSliderSquares.start(infiniteSliderSquares);
+		}
 	});
 
 	// Tips - Sidebar
@@ -175,8 +193,8 @@ function scrollContent() {
 	});
 
 	$('#tips #block1 .listing').each(function() {
-		var currentIndex = $('#tips #block1 .sidebar ul li.active').index();
-		var newIndex = $('#tips #block1 .sidebar ul li.active').index();
+		const currentIndex = $('#tips #block1 .sidebar ul li.active').index();
+		let newIndex = $('#tips #block1 .sidebar ul li.active').index();
 
 		$('> li', this).each(function() {
 			if (newScroll + $(window).height() / 2 > $(this).offset().top) {
@@ -194,13 +212,16 @@ function scrollContent() {
 
 	// Scroll Buttons
 	$('.btn-scroll-down').each(function() {
-		if (newScroll > 10) $(this).addClass('hidden');
-		else $(this).removeClass('hidden');
+		if (newScroll > 10) {
+			$(this).addClass('hidden');
+		} else {
+			$(this).removeClass('hidden');
+		}
 	});
 
 	// Demask Footer
 	$footer.each(function() {
-		var tempScroll = 220;
+		let tempScroll = 220;
 		if (newScroll > totalScroll - 220)
 			tempScroll = 220 - (newScroll - (totalScroll - 220));
 
