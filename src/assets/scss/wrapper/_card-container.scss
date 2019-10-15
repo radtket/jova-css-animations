@@ -3,86 +3,86 @@
   z-index: 10;
 
   > div {
-    transition-duration: 0.75s;
-    transition-property: width;
-    transition-delay: 0s;
-    transition-timing-function: 'ease-in-out';
+    background: $white;
     overflow: hidden;
     position: relative;
-    background: $white;
+    transition-delay: 0s;
+    transition-duration: 0.75s;
+    transition-property: width;
+    transition-timing-function: 'ease-in-out';
     width: 0;
 
     > div {
-      position: relative;
       margin: 20px;
       padding: 4px;
+      position: relative;
 
       .frame {
         position: absolute;
 
         > div {
-          transition-duration: 0.75s;
-          transition-property: width, height;
-          transition-delay: 0.75s;
-          transition-timing-function: 'ease-in-out';
+          background: $color-rangoon-green;
           overflow: hidden;
           position: absolute;
-          background: $color-rangoon-green;
+          transition-delay: 0.75s;
+          transition-duration: 0.75s;
+          transition-property: width, height;
+          transition-timing-function: 'ease-in-out';
         }
 
         &.top {
+          height: 4px;
           left: 0;
           top: 0;
           width: 100%;
-          height: 4px;
 
           > div {
+            height: 100%;
             left: 0;
             top: 0;
             width: 0;
-            height: 100%;
           }
         }
 
         &.right {
+          height: 100%;
           right: 0;
           top: 0;
           width: 4px;
-          height: 100%;
 
           > div {
+            height: 0;
             left: 0;
             top: 0;
             width: 100%;
-            height: 0;
           }
         }
 
         &.bottom {
-          right: 0;
           bottom: 0;
-          width: 100%;
           height: 4px;
+          right: 0;
+          width: 100%;
 
           > div {
+            height: 100%;
             right: 0;
             top: 0;
             width: 0;
-            height: 100%;
           }
         }
 
         &.left {
-          left: 0;
           bottom: 0;
-          width: 4px;
           height: 100%;
+          left: 0;
+          width: 4px;
 
           > div {
-            left: 0;
             bottom: 0;
-            width: 100%;
             height: 0;
+            left: 0;
+            width: 100%;
           }
         }
       }
@@ -92,68 +92,68 @@
         z-index: 15;
 
         > div {
-          transition-duration: 0.75s;
-          transition-property: width, height;
-          transition-delay: 1s;
-          transition-timing-function: 'ease-in-out';
+          background: $color-chicago;
           overflow: hidden;
           position: absolute;
-          background: $color-chicago;
+          transition-delay: 1s;
+          transition-duration: 0.75s;
+          transition-property: width, height;
+          transition-timing-function: 'ease-in-out';
         }
 
         &.top {
+          height: 2px;
           left: 0;
           top: 0;
           width: 100%;
-          height: 2px;
 
           > div {
+            height: 100%;
             left: 0;
             top: 0;
             width: 0;
-            height: 100%;
           }
         }
 
         &.right {
+          height: 100%;
           right: 0;
           top: 0;
           width: 2px;
-          height: 100%;
 
           > div {
+            height: 0;
             left: 0;
             top: 0;
             width: 100%;
-            height: 0;
           }
         }
 
         &.bottom {
-          right: 0;
           bottom: 0;
-          width: 100%;
           height: 2px;
+          right: 0;
+          width: 100%;
 
           > div {
+            height: 100%;
             right: 0;
             top: 0;
             width: 0;
-            height: 100%;
           }
         }
 
         &.left {
-          left: 0;
           bottom: 0;
-          width: 2px;
           height: 100%;
+          left: 0;
+          width: 2px;
 
           > div {
-            left: 0;
             bottom: 0;
-            width: 100%;
             height: 0;
+            left: 0;
+            width: 100%;
           }
         }
       }
@@ -165,37 +165,37 @@
   }
 
   &.home {
-    position: absolute;
+    cursor: default;
     left: 50%;
-    top: 50%;
     margin-left: -278px;
     margin-top: -168px;
+    position: absolute;
+    top: 50%;
     width: 557px;
     z-index: 50;
-    cursor: default;
 
     h2 {
       position: relative;
       width: 100%;
 
       .logo {
-        display: block;
-        text-indent: -5000px;
         background: $url-4 no-repeat 0 0;
+        display: block;
         height: 118px;
+        text-indent: -5000px;
       }
 
       .btn-lang {
-        font-family: $font-0, $font-1;
-        display: block;
-        position: absolute;
-        left: 40px;
-        top: 0;
-        color: $color-rangoon-green;
-        font-size: 13px;
-        text-transform: uppercase;
-        margin: 13px 20px;
         border-bottom: 1px solid transparent;
+        color: $color-rangoon-green;
+        display: block;
+        font-family: $font-0, $font-1;
+        font-size: 13px;
+        left: 40px;
+        margin: 13px 20px;
+        position: absolute;
+        text-transform: uppercase;
+        top: 0;
 
         &:hover {
           border-color: $color-rangoon-green;
@@ -204,23 +204,23 @@
     }
 
     h3 {
+      background: $url-5 no-repeat 261px 12px;
+      color: transparent;
+      overflow: hidden;
+      padding-bottom: 1px;
+      position: relative;
+      transition-delay: 1.35s;
       transition-duration: 0.45s;
       transition-property: color;
-      transition-delay: 1.35s;
       transition-timing-function: 'ease-in-out';
-      overflow: hidden;
-      position: relative;
-      color: transparent;
-      padding-bottom: 1px;
-      background: $url-5 no-repeat 261px 12px;
 
       > span {
-        font-family: $font-0, $font-1;
         display: block;
+        font-family: $font-0, $font-1;
         font-size: 14px;
-        text-transform: uppercase;
-        line-height: 40px;
         letter-spacing: 0.65em;
+        line-height: 40px;
+        text-transform: uppercase;
 
         &.left {
           float: left;
@@ -239,58 +239,58 @@
     }
 
     .menu {
-      overflow: hidden;
       margin: 0 59px;
+      overflow: hidden;
 
       > li {
         float: left;
         position: relative;
 
         > a {
-          transition-duration: 0.45s;
-          transition-property: opacity;
-          transition-delay: 1.45s;
-          transition-timing-function: 'ease-in-out';
+          color: $color-rangoon-green;
           display: block;
+          filter: alpha(opacity=0);
+          height: 65px;
+          opacity: 0;
           overflow: hidden;
           position: relative;
-          color: $color-rangoon-green;
-          height: 65px;
+          transition-delay: 1.45s;
+          transition-duration: 0.45s;
+          transition-property: opacity;
+          transition-timing-function: 'ease-in-out';
           z-index: 1;
-          opacity: 0;
-          filter: alpha(opacity=0);
 
           > span {
             &::before {
-              text-align: center;
               padding: 0;
+              text-align: center;
             }
 
             .small {
-              font-family: $font-0, $font-1;
               display: block;
-              position: absolute;
-              left: 10px;
-              top: 7px;
+              font-family: $font-0, $font-1;
               font-size: 8px;
-              text-transform: uppercase;
+              left: 10px;
               letter-spacing: 0.1em;
+              position: absolute;
+              text-transform: uppercase;
+              top: 7px;
             }
 
             .big {
+              display: block;
+              font-size: 15px;
+              line-height: 50px;
+              position: relative;
+              text-align: center;
+              transition-delay: 0s;
               transition-duration: 0.45s;
               transition-property: margin-top, background;
-              transition-delay: 0s;
               transition-timing-function: 'ease-in-out';
-              display: block;
-              position: relative;
-              font-size: 15px;
-              text-align: center;
-              line-height: 50px;
 
               > span {
-                font-family: $font-2;
                 display: block;
+                font-family: $font-2;
                 font-size: 17px;
                 padding: 15px 0 0;
                 white-space: nowrap;
@@ -359,8 +359,8 @@
 
     &.loaded {
       .menu > li > a {
-        opacity: 1;
         filter: alpha(opacity=100);
+        opacity: 1;
       }
 
       .btn-previous {
@@ -377,28 +377,28 @@
     }
 
     .btn-previous {
-      display: block;
-      position: absolute;
-      left: 0;
-      bottom: 0;
       background: $url-1 repeat-x center 54px;
-      width: 59px;
+      bottom: 0;
+      display: block;
       height: 130px;
+      left: 0;
+      position: absolute;
+      width: 59px;
 
       .small {
+        color: transparent;
+        display: block;
+        font-family: $font-0, $font-1;
+        font-size: 8px;
+        left: 10px;
+        letter-spacing: 0.1em;
+        position: absolute;
+        text-transform: uppercase;
+        top: 7px;
+        transition-delay: 1.25s;
         transition-duration: 0.45s;
         transition-property: color;
-        transition-delay: 1.25s;
         transition-timing-function: 'ease-in-out';
-        font-family: $font-0, $font-1;
-        display: block;
-        position: absolute;
-        left: 10px;
-        top: 7px;
-        color: transparent;
-        font-size: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
       }
 
       &:hover {
@@ -407,28 +407,28 @@
     }
 
     .btn-next {
+      background: $url-2 repeat-x center 54px;
+      bottom: 0;
       display: block;
+      height: 130px;
       position: absolute;
       right: 0;
-      bottom: 0;
-      background: $url-2 repeat-x center 54px;
       width: 59px;
-      height: 130px;
 
       .small {
+        color: transparent;
+        display: block;
+        font-family: $font-0, $font-1;
+        font-size: 8px;
+        left: 10px;
+        letter-spacing: 0.1em;
+        position: absolute;
+        text-transform: uppercase;
+        top: 7px;
+        transition-delay: 1.25s;
         transition-duration: 0.45s;
         transition-property: color;
-        transition-delay: 1.25s;
         transition-timing-function: 'ease-in-out';
-        font-family: $font-0, $font-1;
-        display: block;
-        position: absolute;
-        left: 10px;
-        top: 7px;
-        color: transparent;
-        font-size: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
       }
 
       &:hover {
@@ -436,28 +436,30 @@
       }
     }
 
-    > div > div {
-      width: 509px;
-      height: 289px;
+    > div {
+      > div {
+        height: 289px;
+        width: 509px;
+      }
     }
   }
 
-  &.loaded > div {
-    width: 100%;
-
+  &.loaded {
     > div {
-      .frame > div {
-        width: 100%;
-        height: 100%;
-      }
+      width: 100%;
 
-      .border > div {
-        width: 100%;
-        height: 100%;
-      }
+      > div {
+        .frame,
+        .border {
+          > div {
+            height: 100%;
+            width: 100%;
+          }
+        }
 
-      .content > * {
-        color: $color-rangoon-green;
+        .content > * {
+          color: $color-rangoon-green;
+        }
       }
     }
   }

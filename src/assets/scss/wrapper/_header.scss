@@ -1,56 +1,56 @@
 #header_btn-menu {
+  background: $white $url-10 no-repeat center center;
+  height: 178px;
+  left: -84px;
+  margin-top: -89px;
+  position: fixed;
+  top: 50%;
+  transition-delay: 0s;
   transition-duration: 0.45s;
   transition-property: left;
-  transition-delay: 0s;
   transition-timing-function: 'ease-in-out';
-  position: fixed;
-  left: -84px;
-  top: 50%;
-  margin-top: -89px;
-  background: $white $url-10 no-repeat center center;
   width: 84px;
-  height: 178px;
   z-index: 800;
 
   > span {
     display: block;
+    height: 94px;
+    left: 23px;
     overflow: hidden;
     position: absolute;
-    left: 23px;
     top: 61px;
     width: 38px;
-    height: 94px;
 
     > span {
-      transition-duration: 0.45s;
-      transition-property: all;
-      transition-delay: 0s;
-      transition-timing-function: 'ease-in-out';
-      transform-origin: 0 50%;
-      transform-style: preserve-3d;
+      background: $white $url-11 no-repeat center center;
       display: block;
+      height: 94px;
       position: relative;
       text-indent: -5000px;
-      background: $white $url-11 no-repeat center center;
+      transform-origin: 0 50%;
+      transform-style: preserve-3d;
+      transition-delay: 0s;
+      transition-duration: 0.45s;
+      transition-property: all;
+      transition-timing-function: 'ease-in-out';
       width: 38px;
-      height: 94px;
 
       &::before {
-        transition-duration: 0.45s;
-        transition-property: background;
-        transition-delay: 0s;
-        transition-timing-function: 'ease-in-out';
-        transform: rotatey(90deg);
-        transform-origin: 0 50%;
+        background: $color-storm-dust $url-11 no-repeat center center;
         content: attr(data-hover);
         display: block;
-        position: absolute;
-        left: 100%;
-        top: 0;
-        text-indent: -5000px;
-        background: $color-storm-dust $url-11 no-repeat center center;
-        width: 38px;
         height: 94px;
+        left: 100%;
+        position: absolute;
+        text-indent: -5000px;
+        top: 0;
+        transform: rotatey(90deg);
+        transform-origin: 0 50%;
+        transition-delay: 0s;
+        transition-duration: 0.45s;
+        transition-property: background;
+        transition-timing-function: 'ease-in-out';
+        width: 38px;
       }
     }
   }
@@ -79,15 +79,15 @@
 }
 
 #header {
-  display: none;
-  position: fixed;
-  left: 0;
-  top: 0;
   background: $url-12;
-  width: 100%;
-  height: 100%;
-  z-index: 825;
   cursor: $url-13 21 21, auto;
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 825;
 
   .card-container {
     &.home {
@@ -104,14 +104,14 @@
 
         > li > a {
           .big {
-            text-align: left;
             padding-left: 25px;
+            text-align: left;
           }
 
           > span {
             &::before {
-              text-align: left;
               padding: 0 25px;
+              text-align: left;
             }
           }
         }

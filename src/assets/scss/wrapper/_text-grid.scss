@@ -2,9 +2,9 @@
   position: relative;
 
   > .line {
-    overflow: hidden;
-    margin-left: -4.5%;
     margin-bottom: 20px;
+    margin-left: -4.5%;
+    overflow: hidden;
     width: 100%;
 
     &.loaded {
@@ -17,27 +17,27 @@
 
     > div {
       float: left;
+      height: 100px;
       position: relative;
       width: 9.09%;
-      height: 100px;
 
       > span {
-        transition-duration: 0.45s;
-        transition-property: padding-top;
-        transition-delay: 0s;
-        transition-timing-function: 'ease-in-out';
-        font-family: $font-0, $font-1;
-        display: block;
-        position: absolute;
-        left: 0;
-        top: 50%;
         color: $color-twine;
+        display: block;
+        font-family: $font-0, $font-1;
         font-size: 70px;
-        text-align: center;
-        text-transform: uppercase;
+        left: 0;
         line-height: 100px;
         margin-top: -50px;
         padding-top: 100%;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        top: 50%;
+        transition-delay: 0s;
+        transition-duration: 0.45s;
+        transition-property: padding-top;
+        transition-timing-function: 'ease-in-out';
         width: 100%;
 
         @media (max-width: 1380px) {

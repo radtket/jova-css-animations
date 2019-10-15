@@ -5,68 +5,68 @@
     position: absolute;
 
     > div {
-      transition-duration: 0.75s;
-      transition-property: width, height;
-      transition-delay: 0s;
-      transition-timing-function: 'ease-in-out';
+      background: $color-rangoon-green;
       overflow: hidden;
       position: absolute;
-      background: $color-rangoon-green;
+      transition-delay: 0s;
+      transition-duration: 0.75s;
+      transition-property: width, height;
+      transition-timing-function: 'ease-in-out';
     }
 
     &.top {
+      height: 4px;
       left: 0;
       top: 0;
       width: 100%;
-      height: 4px;
 
       > div {
+        height: 100%;
         left: 0;
         top: 0;
         width: 0;
-        height: 100%;
       }
     }
 
     &.right {
+      height: 100%;
       right: 0;
       top: 0;
       width: 4px;
-      height: 100%;
 
       > div {
+        height: 0;
         left: 0;
         top: 0;
         width: 100%;
-        height: 0;
       }
     }
 
     &.bottom {
-      right: 0;
       bottom: 0;
-      width: 100%;
       height: 4px;
+      right: 0;
+      width: 100%;
 
       > div {
+        height: 100%;
         right: 0;
         top: 0;
         width: 0;
-        height: 100%;
       }
     }
 
     &.left {
-      left: 0;
       bottom: 0;
-      width: 4px;
       height: 100%;
+      left: 0;
+      width: 4px;
 
       > div {
-        left: 0;
         bottom: 0;
-        width: 100%;
         height: 0;
+        left: 0;
+        width: 100%;
       }
     }
   }
@@ -75,91 +75,89 @@
     position: absolute;
 
     > div {
-      transition-duration: 0.75s;
-      transition-property: width, height;
-      transition-delay: 0s;
-      transition-timing-function: 'ease-in-out';
+      background: $color-chicago;
       overflow: hidden;
       position: absolute;
-      background: $color-chicago;
+      transition-delay: 0s;
+      transition-duration: 0.75s;
+      transition-property: width, height;
+      transition-timing-function: 'ease-in-out';
     }
 
     &.top {
+      height: 1px;
       left: 0;
       top: 0;
       width: 100%;
-      height: 1px;
 
       > div {
+        height: 100%;
         left: 0;
         top: 0;
         width: 0;
-        height: 100%;
       }
     }
 
     &.right {
+      height: 100%;
       right: 0;
       top: 0;
       width: 1px;
-      height: 100%;
 
       > div {
+        height: 0;
         left: 0;
         top: 0;
         width: 100%;
-        height: 0;
       }
     }
 
     &.bottom {
-      right: 0;
       bottom: 0;
-      width: 100%;
       height: 1px;
+      right: 0;
+      width: 100%;
 
       > div {
+        height: 100%;
         right: 0;
         top: 0;
         width: 0;
-        height: 100%;
       }
     }
 
     &.left {
-      left: 0;
       bottom: 0;
-      width: 1px;
       height: 100%;
+      left: 0;
+      width: 1px;
 
       > div {
-        left: 0;
         bottom: 0;
-        width: 100%;
         height: 0;
+        left: 0;
+        width: 100%;
       }
     }
   }
 
   > .content {
-    position: relative;
     padding: 4px;
+    position: relative;
   }
 
   &.loaded {
-    .frame {
-      > div {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-
-  .loaded {
     > .border {
       > div {
-        width: 100%;
         height: 100%;
+        width: 100%;
+      }
+    }
+
+    .frame {
+      > div {
+        height: 100%;
+        width: 100%;
       }
     }
   }

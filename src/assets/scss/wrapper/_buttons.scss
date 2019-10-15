@@ -1,28 +1,28 @@
 .btn-arrow {
-  font-family: $font-2;
+  border: 3px solid $white;
+  color: $white;
   display: block;
   float: left;
+  font-family: $font-2;
   position: relative;
-  color: $white;
-  border: 3px solid $white;
 
   .txt {
+    border-right: 2px solid $white;
     display: block;
+    height: 65px;
+    margin-right: 59px;
     overflow: hidden;
     position: relative;
-    margin-right: 59px;
-    border-right: 2px solid $white;
-    height: 65px;
     z-index: 1;
 
     .big {
+      display: block;
+      min-width: 115px;
+      padding: 15px 25px 0;
+      transition-delay: 0s;
       transition-duration: 0.45s;
       transition-property: margin-top, background;
-      transition-delay: 0s;
       transition-timing-function: 'ease-in-out';
-      display: block;
-      padding: 15px 25px 0;
-      min-width: 115px;
 
       > span {
         display: block;
@@ -33,30 +33,30 @@
     }
 
     .small {
-      font-family: $font-0, $font-1;
       display: block;
-      position: absolute;
-      left: 10px;
-      top: 7px;
+      font-family: $font-0, $font-1;
       font-size: 8px;
-      text-transform: uppercase;
+      left: 10px;
       letter-spacing: 0.1em;
+      position: absolute;
+      text-transform: uppercase;
+      top: 7px;
     }
   }
 
   .bg {
+    background: $url-6 repeat-x 0 center;
     display: block;
+    height: 100%;
     position: absolute;
     right: 0;
     top: 0;
-    background: $url-6 repeat-x 0 center;
-    height: 100%;
     width: 59px;
   }
 
   &.inverted {
-    color: $color-twine;
     border-color: $color-twine;
+    color: $color-twine;
 
     .txt {
       border-color: $color-twine;
@@ -75,42 +75,42 @@
 }
 
 .btn-scroll-down {
+  bottom: -80px;
+  display: block;
+  left: 50%;
+  margin-left: -40px;
+  position: fixed;
+  transition-delay: 0s;
   transition-duration: 0.55s;
   transition-property: opacity, bottom;
-  transition-delay: 0s;
   transition-timing-function: 'ease-in-out';
-  display: block;
-  position: fixed;
-  left: 50%;
-  bottom: -80px;
-  margin-left: -40px;
   z-index: 820;
 
   > {
     .bg {
-      display: block;
-      position: relative;
       background: $black;
-      width: 80px;
+      display: block;
+      filter: alpha(opacity=25);
       height: 80px;
       opacity: 0.25;
-      filter: alpha(opacity=25);
+      position: relative;
+      width: 80px;
     }
 
     .icon {
+      background: $url-8 repeat-y center center;
+      border: 2px solid $color-twine;
+      display: block;
+      height: 62px;
+      left: 0;
+      margin: 7px;
+      position: absolute;
+      top: 0;
+      transition-delay: 0s;
       transition-duration: 0.45s;
       transition-property: background;
-      transition-delay: 0s;
       transition-timing-function: 'ease-in-out';
-      display: block;
-      position: absolute;
-      left: 0;
-      top: 0;
-      margin: 7px;
-      border: 2px solid $color-twine;
-      background: $url-8 repeat-y center center;
       width: 62px;
-      height: 62px;
       z-index: 1;
     }
   }
@@ -126,13 +126,13 @@
     > {
       .bg {
         background: $white;
-        opacity: 1;
         filter: alpha(opacity=100);
+        opacity: 1;
       }
 
       .icon {
-        border-color: $color-rangoon-green;
         background-image: $url-9;
+        border-color: $color-rangoon-green;
       }
     }
   }
@@ -142,27 +142,29 @@
   }
 
   &.hidden {
-    opacity: 0;
     filter: alpha(opacity=0);
+    opacity: 0;
   }
 
-  &:hover > .icon {
-    background-position: center 62px;
+  &:hover {
+    > .icon {
+      background-position: center 62px;
+    }
   }
 }
 
 #btn-lang {
-  font-family: $font-0, $font-1;
-  display: block;
-  position: fixed;
-  left: 0;
-  top: 0;
-  color: $color-rangoon-green;
-  font-size: 13px;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 15px 0;
   background: $white;
+  color: $color-rangoon-green;
+  display: block;
+  font-family: $font-0, $font-1;
+  font-size: 13px;
+  left: 0;
+  padding: 15px 0;
+  position: fixed;
+  text-align: center;
+  text-transform: uppercase;
+  top: 0;
   width: 85px;
   z-index: 830;
 

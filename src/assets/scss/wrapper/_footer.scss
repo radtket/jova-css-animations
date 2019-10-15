@@ -1,35 +1,35 @@
 #footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
   background: $white;
-  width: 100%;
+  bottom: 0;
+  left: 0;
   min-width: 980px;
+  position: fixed;
+  width: 100%;
   z-index: 500;
 
   > .centered {
-    padding: 70px 0 95px;
     background: $url-31 no-repeat center bottom;
+    padding: 70px 0 95px;
 
     .logo {
+      background: $url-32 no-repeat 0 0;
       display: block;
       float: right;
-      text-indent: -5000px;
-      margin-bottom: 17px;
-      background: $url-32 no-repeat 0 0;
-      width: 107px;
       height: 32px;
+      margin-bottom: 17px;
+      text-indent: -5000px;
+      width: 107px;
     }
 
     .blocks {
-      overflow: hidden;
       clear: both;
+      overflow: hidden;
 
       > li {
-        float: left;
-        position: relative;
-        padding-bottom: 70px;
         border-top: 2px solid $color-chicago;
+        float: left;
+        padding-bottom: 70px;
+        position: relative;
         width: 20%;
 
         @media (max-width: 1380px) {
@@ -40,14 +40,14 @@
           padding: 30px 25px;
 
           h2 {
-            font-family: $font-0, $font-1;
             display: block;
-            position: absolute;
-            left: 10px;
-            top: 7px;
+            font-family: $font-0, $font-1;
             font-size: 8px;
-            text-transform: uppercase;
+            left: 10px;
             letter-spacing: 0.1em;
+            position: absolute;
+            text-transform: uppercase;
+            top: 7px;
           }
         }
 
@@ -55,8 +55,8 @@
           width: 24%;
 
           @media (max-width: 1380px) {
-            width: 40% !important;
             padding-bottom: 0;
+            width: 40% !important;
           }
 
           > div {
@@ -110,6 +110,7 @@
                 top: 12px;
               }
             }
+
             > p {
               @extend %extend-5;
 
@@ -137,11 +138,11 @@
                 float: left;
 
                 a {
-                  font-family: $font-2;
+                  border-bottom: 1px solid $color-rangoon-green;
                   color: $color-rangoon-green;
+                  font-family: $font-2;
                   font-size: 15px;
                   font-weight: 700;
-                  border-bottom: 1px solid $color-rangoon-green;
 
                   &:hover {
                     border-color: transparent;
@@ -175,23 +176,23 @@
     }
 
     .copyright {
-      font-family: $font-3, $font-1;
-      position: absolute;
-      left: 0;
       bottom: 33px;
+      font-family: $font-3, $font-1;
       font-size: 13px;
+      left: 0;
+      position: absolute;
     }
 
     .credits {
+      bottom: 33px;
       font-family: $font-3, $font-1;
+      font-size: 13px;
       position: absolute;
       right: 0;
-      bottom: 33px;
-      font-size: 13px;
 
       a {
-        color: $color-rangoon-green;
         border-bottom: 1px solid $color-rangoon-green;
+        color: $color-rangoon-green;
 
         &:hover {
           border-color: transparent;
