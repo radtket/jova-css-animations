@@ -34,16 +34,16 @@ const browserSync = require('browser-sync').create();
 
 const src_folder = './src/';
 const src_assets_folder = src_folder + 'assets/';
-const dist_folder = './dist/';
-const dist_assets_folder = dist_folder + 'assets/';
+const docs_folder = './docs/';
+const docs_assets_folder = docs_folder + 'assets/';
 const node_modules_folder = './node_modules/';
-const dist_node_modules_folder = dist_folder + 'node_modules/';
+const docs_node_modules_folder = docs_folder + 'node_modules/';
 
 const node_dependencies = Object.keys(
 	require('./package.json').dependencies || {}
 );
 
-gulp.task('clear', () => del([dist_folder]));
+gulp.task('clear', () => del([docs_folder]));
 
 gulp.task('html', () => {
 	return gulp
@@ -51,7 +51,7 @@ gulp.task('html', () => {
 			base: src_folder,
 			since: gulp.lastRun('html'),
 		})
-		.pipe(gulp.dest(dist_folder))
+		.pipe(gulp.dest(docs_folder))
 		.pipe(browserSync.stream());
 });
 
@@ -70,14 +70,14 @@ gulp.task('sass', () => {
 		.pipe(autoprefixer())
 		.pipe(minifyCss())
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest(dist_assets_folder + 'css'))
+		.pipe(gulp.dest(docs_assets_folder + 'css'))
 		.pipe(browserSync.stream());
 });
 
 gulp.task('modernizr', () => {
 	return gulp
 		.src(`${src_assets_folder}/js/modernizr.custom.js`)
-		.pipe(gulp.dest(dist_assets_folder + 'js'));
+		.pipe(gulp.dest(docs_assets_folder + 'js'));
 });
 
 gulp.task('js', () => {
@@ -98,7 +98,7 @@ gulp.task('js', () => {
 		.pipe(concat('all.js'))
 		.pipe(uglify())
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest(dist_assets_folder + 'js'))
+		.pipe(gulp.dest(docs_assets_folder + 'js'))
 		.pipe(browserSync.stream());
 });
 
@@ -109,7 +109,7 @@ gulp.task('images', () => {
 		})
 		.pipe(plumber())
 		.pipe(imagemin())
-		.pipe(gulp.dest(dist_assets_folder + 'images'))
+		.pipe(gulp.dest(docs_assets_folder + 'images'))
 		.pipe(browserSync.stream());
 });
 
@@ -131,7 +131,7 @@ gulp.task('vendor', () => {
 				since: gulp.lastRun('vendor'),
 			}
 		)
-		.pipe(gulp.dest(dist_node_modules_folder))
+		.pipe(gulp.dest(docs_node_modules_folder))
 		.pipe(browserSync.stream());
 });
 
@@ -144,7 +144,7 @@ gulp.task('dev', gulp.series('html', 'sass', 'js'));
 
 gulp.task('serve', () => {
 	return browserSync.init({
-		server: './dist',
+		server: './docs',
 		startPath: '/index.html', // After it browser running
 		browser: 'chrome',
 		host: 'localhost',
