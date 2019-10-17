@@ -47,6 +47,8 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
+    "@google/maps": "^1.0.1",
+    "auto-bind": "^2.1.1",
     "axios": "^0.19.0",
     "babel-eslint": "^10.0.3",
     "eslint-plugin-babel": "^5.3.0",

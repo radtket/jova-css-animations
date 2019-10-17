@@ -1,8 +1,8 @@
 function initializeMap(latitude, longitude, mapID) {
-	var g = new google.maps.LatLng(latitude, longitude);
-	var b = {
+	const center = new google.maps.LatLng(latitude, longitude);
+	const bounds = {
 		zoom: 15,
-		center: g,
+		center,
 		disableDefaultUI: true,
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		scrollwheel: false,
@@ -71,9 +71,9 @@ function initializeMap(latitude, longitude, mapID) {
 			},
 		],
 	};
-	var d = new google.maps.Map(document.getElementById(mapID), b);
-	var image = new google.maps.MarkerImage(
-		'images/layout/contact_map-pin.png',
+	const map = new google.maps.Map(document.getElementById(mapID), bounds);
+	const icon = new google.maps.MarkerImage(
+		'assets/images/layout/sizer_contact-map.gif',
 		// This marker is 20 pixels wide by 32 pixels tall.
 		new google.maps.Size(47, 93),
 		// The origin for this image is 0,0.
@@ -82,15 +82,15 @@ function initializeMap(latitude, longitude, mapID) {
 		new google.maps.Point(23, 46)
 	);
 
-	var marker = new google.maps.Marker({
+	const marker = new google.maps.Marker({
 		position: new google.maps.LatLng(latitude, longitude),
-		map: d,
-		icon: image,
+		map,
+		icon,
 	});
 
 	google.maps.event.addDomListener(window, 'resize', () => {
 		var position = new google.maps.LatLng(latitude, longitude);
-		d.setCenter(position);
+		map.setCenter(position);
 	});
 }
 
