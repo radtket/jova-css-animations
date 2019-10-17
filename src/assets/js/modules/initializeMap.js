@@ -1,4 +1,5 @@
 function initializeMap(latitude, longitude, mapID) {
+	const { google } = window;
 	const center = new google.maps.LatLng(latitude, longitude);
 	const bounds = {
 		zoom: 15,

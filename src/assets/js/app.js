@@ -6,10 +6,12 @@ import initializeMap from './modules/initializeMap';
 
 // Pages
 import initAbout from './pages/about';
+import initContact from './pages/contact';
 import initGallery from './pages/gallery';
 import initHome from './pages/home';
 import initProfile from './pages/portfolio';
 import initServices from './pages/services';
+import initTips from './pages/tips';
 
 // Components
 const $btnHeader = $('#header_btn-menu');
@@ -482,7 +484,9 @@ $(window).load(() => {
 		const longitude = parseFloat($(this).attr('data-longitude'));
 		const mapID = $(this).attr('id');
 
-		initializeMap(latitude, longitude, mapID);
+		if (window.google) {
+			initializeMap(latitude, longitude, mapID);
+		}
 	});
 
 	// Init
@@ -496,11 +500,13 @@ $(window).load(() => {
 		}, 450);
 
 		// Init Pages
-		initHome(isMobile);
 		initAbout(isMobile, currentScroll);
-		initServices(isMobile);
-		initProfile(isMobile);
+		initContact(isMobile);
 		initGallery(isMobile);
+		initHome(isMobile);
+		initProfile(isMobile);
+		initServices(isMobile);
+		initTips(isMobile);
 	});
 });
 
