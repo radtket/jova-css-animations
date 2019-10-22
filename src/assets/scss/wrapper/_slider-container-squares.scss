@@ -234,7 +234,7 @@
 
         .small {
           display: block;
-          font-family: $font-0, $font-1;
+          font-family: $font-family-oswald;
           font-size: 8px;
           left: 10px;
           letter-spacing: 0.1em;
@@ -245,7 +245,7 @@
 
         .big {
           display: block;
-          font-family: $font-2;
+          font-family: $font-family-anonymous;
           font-size: 18px;
           line-height: 50px;
           padding: 17px 25px 0;
@@ -268,7 +268,7 @@
           position: relative;
 
           p {
-            font-family: $font-2;
+            font-family: $font-family-anonymous;
             font-size: 14px;
             line-height: 28px;
 
@@ -333,7 +333,7 @@
             color: $color-rangoon-green;
             display: block;
             filter: alpha(opacity=0);
-            font-family: $font-0, $font-1;
+            font-family: $font-family-oswald;
             font-size: 13px;
             letter-spacing: 0.65em;
             line-height: 65px;
@@ -348,7 +348,7 @@
 
             .effect {
               &::before {
-                font-family: $font-0, $font-1;
+                font-family: $font-family-oswald;
                 font-size: 13px;
                 letter-spacing: 0.65em;
                 padding: 0;
@@ -393,7 +393,7 @@
         .small {
           color: transparent;
           display: block;
-          font-family: $font-0, $font-1;
+          font-family: $font-family-oswald;
           font-size: 8px;
           left: 10px;
           letter-spacing: 0.1em;
@@ -423,7 +423,7 @@
         .small {
           color: transparent;
           display: block;
-          font-family: $font-0, $font-1;
+          font-family: $font-family-oswald;
           font-size: 8px;
           left: 10px;
           letter-spacing: 0.1em;

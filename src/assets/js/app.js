@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 import $ from 'jquery';
 import InfiniteSliderHome from './modules/infiniteSliderHome';
 import whichBrowser from './modules/whichBrowser';
@@ -378,6 +379,11 @@ $(window).load(() => {
 		);
 	});
 
+	$('.card-container.home .btn-next').on('click', e => {
+		e.preventDefault();
+		handleHomeSliderArrows('#slider-container-squares .slider-arrows .next a');
+	});
+
 	// Portfolio
 	$('#portfolio .card-container > div > div').each(function() {
 		const fixWidth =
@@ -386,12 +392,6 @@ $(window).load(() => {
 	});
 
 	// Gallery
-
-	// Change Image
-	$('.card-container.home .btn-next').on('click', e => {
-		e.preventDefault();
-		handleHomeSliderArrows('#slider-container-squares .slider-arrows .next a');
-	});
 
 	const cardContainer = $('#slider-container-squares .card-container');
 
@@ -457,6 +457,7 @@ $(window).load(() => {
 	$('#tips .slider-container').each(function() {
 		const sliderListItem = $('.slider > ul > li', this);
 		if (sliderListItem.length > 1) {
+			// eslint-disable-next-line no-new
 			new InfiniteSlider(
 				$(this),
 				1500,

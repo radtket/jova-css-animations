@@ -21,9 +21,9 @@
         }
 
         p {
-          color: $white;
+          color: $c-white;
           float: left;
-          font-family: $font-2;
+          font-family: $font-family-anonymous;
           font-size: 14px;
           line-height: 28px;
           width: 60%;
@@ -93,12 +93,16 @@
 
             .content {
               > * {
-                > span {
-                  @extend %extend-2;
-                }
-
+                > span,
                 > ul {
-                  @extend %extend-2;
+                  display: block;
+                  filter: alpha(opacity=0);
+                  opacity: 0;
+                  position: relative;
+                  transition-delay: 1.25s;
+                  transition-duration: 0.45s;
+                  transition-property: opacity;
+                  transition-timing-function: 'ease-in-out';
                 }
               }
 
@@ -110,7 +114,7 @@
                 span {
                   bottom: 17px;
                   display: block;
-                  font-family: $font-0, $font-1;
+                  font-family: $font-family-oswald;
                   font-size: 14px;
                   left: 25px;
                   letter-spacing: 0.65em;
@@ -132,7 +136,7 @@
 
                   .small {
                     display: block;
-                    font-family: $font-0, $font-1;
+                    font-family: $font-family-oswald;
                     font-size: 8px;
                     left: 10px;
                     letter-spacing: 0.1em;
@@ -143,7 +147,7 @@
 
                   .big {
                     display: block;
-                    font-family: $font-2;
+                    font-family: $font-family-anonymous;
                     font-size: 17px;
                     line-height: 50px;
                     padding: 15px 25px 0;
@@ -163,7 +167,7 @@
 
                   > span {
                     display: block;
-                    font-family: $font-2;
+                    font-family: $font-family-anonymous;
                     font-size: 32px;
                     font-weight: 700;
                     line-height: 60px;
@@ -183,7 +187,7 @@
 
                   > span {
                     display: block;
-                    font-family: $font-2;
+                    font-family: $font-family-anonymous;
                     font-size: 15px;
                     line-height: 60px;
                     text-align: center;
@@ -275,7 +279,7 @@
 
               .small {
                 display: block;
-                font-family: $font-0, $font-1;
+                font-family: $font-family-oswald;
                 font-size: 8px;
                 left: 10px;
                 letter-spacing: 0.1em;
@@ -290,7 +294,7 @@
                 transition-delay: 1.45s;
 
                 li {
-                  font-family: $font-2;
+                  font-family: $font-family-anonymous;
                   font-size: 15px;
                   line-height: 22px;
                 }
@@ -327,7 +331,7 @@
             width: 557px;
 
             > div {
-              background: $white $url-15 no-repeat 0 bottom;
+              background: $c-white $url-15 no-repeat 0 bottom;
 
               > div {
                 width: 509px;
@@ -357,7 +361,7 @@
 
               > span {
                 display: block;
-                font-family: $font-2;
+                font-family: $font-family-anonymous;
                 font-size: 25px;
                 font-weight: 700;
                 line-height: 50px;

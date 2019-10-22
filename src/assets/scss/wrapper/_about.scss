@@ -43,7 +43,7 @@
 
           .small {
             display: block;
-            font-family: $font-0, $font-1;
+            font-family: $font-family-oswald;
             font-size: 8px;
             left: 10px;
             letter-spacing: 0.1em;
@@ -54,7 +54,7 @@
 
           .big {
             display: block;
-            font-family: $font-2;
+            font-family: $font-family-anonymous;
             font-size: 18px;
             font-weight: 700;
             line-height: 24px;
@@ -67,7 +67,7 @@
           transition-delay: 1.35s;
 
           p {
-            font-family: $font-2;
+            font-family: $font-family-anonymous;
             font-size: 14px;
             line-height: 28px;
 
@@ -171,7 +171,7 @@
           width: 500px;
 
           > div {
-            background: $white $url-17 no-repeat 247px bottom;
+            background: $c-white $url-17 no-repeat 247px bottom;
 
             > div {
               width: 452px;

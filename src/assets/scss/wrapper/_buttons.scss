@@ -1,15 +1,15 @@
 @import '../variables';
 
 .btn-arrow {
-  border: 3px solid $white;
-  color: $white;
+  border: 3px solid $c-white;
+  color: $c-white;
   display: block;
   float: left;
-  font-family: $font-2;
+  font-family: $font-family-anonymous;
   position: relative;
 
   .txt {
-    border-right: 2px solid $white;
+    border-right: 2px solid $c-white;
     display: block;
     height: 65px;
     margin-right: 59px;
@@ -36,7 +36,7 @@
 
     .small {
       display: block;
-      font-family: $font-0, $font-1;
+      font-family: $font-family-oswald;
       font-size: 8px;
       left: 10px;
       letter-spacing: 0.1em;
@@ -90,7 +90,7 @@
 
   > {
     .bg {
-      background: $black;
+      background: $c-black;
       display: block;
       filter: alpha(opacity=25);
       height: 80px;
@@ -127,7 +127,7 @@
 
     > {
       .bg {
-        background: $white;
+        background: $c-white;
         filter: alpha(opacity=100);
         opacity: 1;
       }
@@ -156,10 +156,10 @@
 }
 
 #btn-lang {
-  background: $white;
+  background: $c-white;
   color: $color-rangoon-green;
   display: block;
-  font-family: $font-0, $font-1;
+  font-family: $font-family-oswald;
   font-size: 13px;
   left: 0;
   padding: 15px 0;

@@ -13,7 +13,7 @@
 
         .small {
           display: block;
-          font-family: $font-0, $font-1;
+          font-family: $font-family-oswald;
           font-size: 8px;
           left: 10px;
           letter-spacing: 0.1em;
@@ -24,7 +24,7 @@
 
         .big {
           display: block;
-          font-family: $font-2;
+          font-family: $font-family-anonymous;
           font-size: 18px;
           font-weight: 700;
           line-height: 24px;
@@ -37,7 +37,7 @@
         transition-delay: 1.35s;
 
         p {
-          font-family: $font-2;
+          font-family: $font-family-anonymous;
           font-size: 14px;
           line-height: 28px;
 
@@ -107,7 +107,7 @@
           }
 
           .content {
-            color: $white;
+            color: $c-white;
             filter: alpha(opacity=0);
             opacity: 0;
             transition-delay: 0.5s;
@@ -116,7 +116,7 @@
             transition-timing-function: 'ease-in-out';
 
             h2 {
-              font-family: $font-0, $font-1;
+              font-family: $font-family-oswald;
               font-size: 15px;
               letter-spacing: 0.65em;
               line-height: 28px;
@@ -128,7 +128,7 @@
               .nb {
                 color: $color-twine;
                 display: block;
-                font-family: $font-0, $font-1;
+                font-family: $font-family-oswald;
                 font-size: 8px;
                 left: -35px;
                 letter-spacing: 0.1em;
@@ -138,7 +138,7 @@
             }
 
             p {
-              font-family: $font-2;
+              font-family: $font-family-anonymous;
               font-size: 14px;
               line-height: 28px;
 
@@ -212,10 +212,10 @@
             }
 
             > div {
-              color: $white;
+              color: $c-white;
 
               h2 {
-                font-family: $font-0, $font-1;
+                font-family: $font-family-oswald;
                 font-size: 15px;
                 letter-spacing: 0.65em;
                 line-height: 28px;
@@ -229,7 +229,7 @@
               }
 
               p {
-                font-family: $font-2;
+                font-family: $font-family-anonymous;
                 font-size: 14px;
                 line-height: 28px;
 
@@ -256,7 +256,7 @@
             > .nb {
               color: $color-twine;
               display: block;
-              font-family: $font-0, $font-1;
+              font-family: $font-family-oswald;
               font-size: 8px;
               left: -36px;
               letter-spacing: 0.1em;
@@ -313,7 +313,7 @@
               > span {
                 bottom: 27px;
                 display: block;
-                font-family: $font-0, $font-1;
+                font-family: $font-family-oswald;
                 font-size: 14px;
                 left: 58px;
                 letter-spacing: 0.65em;
@@ -335,7 +335,7 @@
 
               li {
                 background: $url-21 no-repeat 0 12px;
-                font-family: $font-2;
+                font-family: $font-family-anonymous;
                 font-size: 14px;
                 line-height: 28px;
                 padding-left: 35px;

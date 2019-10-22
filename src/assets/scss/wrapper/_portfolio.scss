@@ -43,7 +43,7 @@
               transition-timing-function: 'ease-in-out';
 
               h2 {
-                font-family: $font-0, $font-1;
+                font-family: $font-family-oswald;
                 font-size: 14px;
                 letter-spacing: 0.65em;
                 padding-bottom: 35px;
@@ -51,7 +51,7 @@
               }
 
               p {
-                font-family: $font-2;
+                font-family: $font-family-anonymous;
                 font-size: 14px;
                 line-height: 28px;
               }
@@ -121,7 +121,7 @@
                     h2 {
                       @extend %extend-3;
                       float: left;
-                      font-family: $font-0, $font-1;
+                      font-family: $font-family-oswald;
                       font-size: 15px;
                       letter-spacing: 0.65em;
                       line-height: 50px;
@@ -149,7 +149,7 @@
 
                           .small {
                             display: block;
-                            font-family: $font-0, $font-1;
+                            font-family: $font-family-oswald;
                             font-size: 8px;
                             left: 10px;
                             letter-spacing: 0.1em;
@@ -160,7 +160,7 @@
 
                           .big {
                             display: block;
-                            font-family: $font-2;
+                            font-family: $font-family-anonymous;
                             font-size: 30px;
                             line-height: 50px;
                             padding: 15px 25px 14px;

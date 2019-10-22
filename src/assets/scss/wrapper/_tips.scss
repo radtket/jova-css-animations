@@ -24,10 +24,10 @@
         width: 375px;
 
         > div {
-          color: $white;
+          color: $c-white;
 
           h2 {
-            font-family: $font-0, $font-1;
+            font-family: $font-family-oswald;
             font-size: 15px;
             letter-spacing: 0.65em;
             line-height: 28px;
@@ -37,7 +37,7 @@
           }
 
           p {
-            font-family: $font-2;
+            font-family: $font-family-anonymous;
             font-size: 14px;
             line-height: 28px;
 
@@ -60,7 +60,7 @@
         > .nb {
           color: $color-twine;
           display: block;
-          font-family: $font-0, $font-1;
+          font-family: $font-family-oswald;
           font-size: 8px;
           left: -36px;
           letter-spacing: 0.1em;
@@ -121,10 +121,10 @@
                 transition-timing-function: 'ease-in-out';
 
                 a {
-                  color: $white;
+                  color: $c-white;
                   display: block;
                   filter: alpha(opacity=0);
-                  font-family: $font-0, $font-1;
+                  font-family: $font-family-oswald;
                   font-size: 14px;
                   letter-spacing: 0.55em;
                   line-height: 80px;
@@ -154,8 +154,8 @@
                     }
 
                     &::before {
-                      background: $black-30;
-                      font-family: $font-0, $font-1;
+                      background: $c-black-30;
+                      font-family: $font-family-oswald;
                       font-size: 14px;
                       letter-spacing: 0.55em;
                       line-height: 80px;
@@ -226,7 +226,7 @@
                       transform: rotatex(90deg) translatey(-22px);
 
                       &::before {
-                        background: $black-10;
+                        background: $c-black-10;
                       }
                     }
                   }
@@ -238,7 +238,7 @@
                       transform: rotatex(90deg) translatey(-22px);
 
                       &::before {
-                        background: $black-10;
+                        background: $c-black-10;
                       }
                     }
                   }
@@ -251,7 +251,7 @@
         .card-container {
           .content {
             > span {
-              background: $white $url-23 no-repeat right 0;
+              background: $c-white $url-23 no-repeat right 0;
               display: block;
               filter: alpha(opacity=0);
               opacity: 0;
@@ -270,7 +270,7 @@
                 .effect {
                   color: $color-rangoon-green;
                   display: block;
-                  font-family: $font-0, $font-1;
+                  font-family: $font-family-oswald;
                   font-size: 14px;
                   height: 78px;
                   letter-spacing: 0.55em;
@@ -289,7 +289,7 @@
                   }
 
                   &::before {
-                    font-family: $font-0, $font-1;
+                    font-family: $font-family-oswald;
                     font-size: 14px;
                     letter-spacing: 0.55em;
                     line-height: 78px;
@@ -325,7 +325,7 @@
 
           .framed-block {
             .section {
-              color: $white;
+              color: $c-white;
               padding: 65px;
               position: relative;
 
@@ -500,7 +500,7 @@
 
               h3 {
                 color: $color-twine;
-                font-family: $font-0, $font-1;
+                font-family: $font-family-oswald;
                 font-size: 28px;
                 letter-spacing: 0.65em;
                 padding: 45px 0 30px;
@@ -508,7 +508,7 @@
                 text-transform: uppercase;
 
                 span {
-                  color: $white;
+                  color: $c-white;
                   display: block;
                   font-size: 8px;
                   left: 0;
@@ -519,21 +519,21 @@
               }
 
               h4 {
-                font-family: $font-2;
+                font-family: $font-family-anonymous;
                 font-size: 15px;
                 font-weight: 700;
                 padding-bottom: 30px;
               }
 
               h5 {
-                font-family: $font-2;
+                font-family: $font-family-anonymous;
                 font-size: 15px;
                 font-weight: 700;
                 padding-bottom: 10px;
               }
 
               p {
-                font-family: $font-2;
+                font-family: $font-family-anonymous;
                 font-size: 14px;
                 line-height: 28px;
 
@@ -555,7 +555,7 @@
               > ul {
                 li {
                   background: $url-25 no-repeat 0 12px;
-                  font-family: $font-2;
+                  font-family: $font-family-anonymous;
                   font-size: 14px;
                   line-height: 28px;
                   padding-left: 35px;
@@ -708,7 +708,7 @@
           > span {
             bottom: 27px;
             display: block;
-            font-family: $font-0, $font-1;
+            font-family: $font-family-oswald;
             font-size: 14px;
             left: 65px;
             letter-spacing: 0.65em;
@@ -724,7 +724,7 @@
 
           li {
             filter: alpha(opacity=0);
-            font-family: $font-2;
+            font-family: $font-family-anonymous;
             font-size: 14px;
             line-height: 28px;
             opacity: 0;

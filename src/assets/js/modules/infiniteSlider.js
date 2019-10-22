@@ -1,43 +1,34 @@
 import $ from './easing';
 
-/* ////////////////////////////////////////////////////////////////////////////
-//
-// Infinite Slider
-// V 1.0
-// Alexandra Nantel
-// Last Update 01/11/2012 10:22
-//
-/////////////////////////////////////////////////////////////////////////// */
-
 function InfiniteSlider(
-	wrapper,
-	speed,
-	duration,
-	mode,
-	easing,
-	hover,
-	animation
+	wrapperArg,
+	speedArg,
+	durationArg,
+	modeArg,
+	easingArg,
+	hoverArg,
+	animationArg
 ) {
-	var _infiniteSlider = this;
+	const $infiniteSlider = this;
 
 	// If true : running
 	this.animated = false;
 	// Autorotation
-	this.hover = hover;
-	this.autorotation = animation;
+	this.hover = hoverArg;
+	this.autorotation = animationArg;
 	this.running = true;
-	this.t;
+	this.t = null;
 	// Setting the container and controller
-	this.wrapper = $(wrapper);
+	this.wrapper = $(wrapperArg);
 	this.container = $('.slider', this.wrapper);
 	this.arrows = $('.slider-arrows', this.wrapper);
 	this.count = $('.count', this.arrows);
 	this.controls = $('.slider-controls', this.wrapper);
 	this.infos = $('.slider-infos', this.wrapper);
-	this.speed = speed;
-	this.duration = duration;
-	this.mode = mode; // slide - slidev - fade - demask
-	this.easing = easing;
+	this.speed = speedArg;
+	this.duration = durationArg;
+	this.mode = modeArg; // slide - slidev - fade - demask
+	this.easing = easingArg;
 	this.width = this.container.width();
 	this.height = this.container.height();
 	// Setting index : slide ordered index || indexSlide : slide real index
@@ -46,178 +37,155 @@ function InfiniteSlider(
 	// Number of elements
 	this.length = $('li', this.container).length - 1;
 
-	/* Initialize
-	//////////////////////////////////////////////////////////////////////// */
+	const {
+		arrows,
+		arrowsClick,
+		container,
+		controls,
+		controlsClick,
+		count,
+		hover,
+		index,
+		infos,
+		length,
+		reset,
+		running,
+		wrapper,
+	} = this;
 
 	// Identify each slide and control with initial order
-	$('> ul > li', this.container).each(function() {
-		$(this).attr('data-slide', $(this).index() + 1);
-
-		if ($(this).index() == 0) {
-			$(this).addClass('active');
-			$(_infiniteSlider.controls).append(
-				'<li class="active" data-slide="' +
-					($(this).index() + 1) +
-					'"><a href="">Slide ' +
-					($(this).index() + 1) +
-					'</a></li>'
-			);
-		} else {
-			$(this).addClass('inactive');
-			$(_infiniteSlider.controls).append(
-				'<li class="inactive" data-slide="' +
-					($(this).index() + 1) +
-					'"><a href="">Slide ' +
-					($(this).index() + 1) +
-					'</a></li>'
-			);
-		}
+	$('> ul > li', container).each(function() {
+		const i = $(this).index();
+		const slideIndex = i + 1;
+		const isActive = i === 0 ? 'active' : 'inactive';
+		const template = `<li class="${isActive}" data-slide="${slideIndex}"><a href="">Slide ${slideIndex}</a></li>`;
+		$(this).attr('data-slide', slideIndex);
+		$(this).addClass(isActive);
+		$(controls).append(template);
 	});
 
-	$('li', this.controls).each(function() {
-		$(this).attr('data-slide', $(this).index() + 1);
+	$('li', controls).each(function() {
+		const i = $(this).index();
+		const slideIndex = i + 1;
+		const isActive = i === 0 ? 'active' : 'inactive';
 
-		if ($(this).index() == 0) $(this).addClass('active');
-		else $(this).addClass('inactive');
+		$(this).attr('data-slide', slideIndex);
+		$(this).addClass(isActive);
 	});
 
 	// Fill Count values
-	$(this.count).html(this.index + 1 + ' / ' + (this.length + 1));
+	$(count).html(index + 1 + ' / ' + (length + 1));
 
 	// Fill First Infos
-	if ($('> ul > li:eq(0)', this.container).attr('data-infos') != '')
-		$(this.infos).html($('> ul > li:eq(0)', this.container).attr('data-infos'));
+	if ($('> ul > li:eq(0)', container).attr('data-infos') != '') {
+		$(infos).html($('> ul > li:eq(0)', this.container).attr('data-infos'));
+	}
 
 	// Disable if just one slide
-	if (this.length == 0) {
-		$(this.controls).hide();
+	if (length === 0) {
+		$(controls).hide();
 		this.autorotation = false;
 	}
 
 	// Initiate Positioning
-	this.reset(_infiniteSlider);
+	this.reset($infiniteSlider);
 
 	// Bind
-	if (this.hover) {
-		$(this.wrapper).mouseenter(function() {
-			_infiniteSlider.stop(_infiniteSlider);
+	if (hover) {
+		$(wrapper).mouseenter(() => {
+			$infiniteSlider.stop($infiniteSlider);
 		});
-		$(this.wrapper).mouseleave(function() {
-			_infiniteSlider.start(_infiniteSlider);
+		$(wrapper).mouseleave(() => {
+			$infiniteSlider.start($infiniteSlider);
 		});
 	}
 
-	$('li a', this.controls).click(function() {
-		_infiniteSlider.controlsClick($(this), _infiniteSlider);
-
-		return false;
+	$('li a', controls).click(function(e) {
+		e.preventDefault();
+		controlsClick($(this), $infiniteSlider);
 	});
 
-	$('li a', this.arrows).click(function() {
-		_infiniteSlider.arrowsClick($(this), _infiniteSlider);
-
-		return false;
+	$('li a', arrows).click(function(e) {
+		e.preventDefault();
+		arrowsClick($(this), $infiniteSlider);
 	});
 
-	$(window).resize(function() {
-		_infiniteSlider.reset(_infiniteSlider);
+	$(window).resize(() => {
+		reset($infiniteSlider);
 	});
+
+	console.log(this, $infiniteSlider);
 
 	// Start Autorotation
-	if (this.running) this.autoRotation(_infiniteSlider);
+	if (running) {
+		this.autoRotation($infiniteSlider);
+	}
 }
 
-/* ////////////////////////////////////////////////////////////////////////////
-//
-// Autorotation
-//
-/////////////////////////////////////////////////////////////////////////// */
+InfiniteSlider.prototype.autoRotation = $infiniteSlider => {
+	clearTimeout($infiniteSlider.t);
+	const {
+		controls,
+		autorotation,
+		running,
+		changeSlide,
+		indexSlide,
+		duration,
+	} = $infiniteSlider;
 
-InfiniteSlider.prototype.autoRotation = function(_infiniteSlider) {
-	clearTimeout(_infiniteSlider.t);
-
-	if (
-		$('li', _infiniteSlider.controls).length > 1 &&
-		_infiniteSlider.autorotation
-	) {
-		if (_infiniteSlider.running) {
-			_infiniteSlider.t = setTimeout(function() {
-				_infiniteSlider.changeSlide(
-					_infiniteSlider.indexSlide,
-					_infiniteSlider.indexSlide + 1,
-					_infiniteSlider
-				);
-			}, _infiniteSlider.duration);
-		}
+	if ($('li', controls).length > 1 && autorotation && running) {
+		$infiniteSlider.t = setTimeout(() => {
+			changeSlide(indexSlide, indexSlide + 1, $infiniteSlider);
+		}, duration);
 	}
 };
 
-/* ////////////////////////////////////////////////////////////////////////////
-//
-// External Functions
-//
-/////////////////////////////////////////////////////////////////////////// */
-
-InfiniteSlider.prototype.start = function(_infiniteSlider) {
-	_infiniteSlider.running = true;
-	_infiniteSlider.autoRotation(_infiniteSlider);
+InfiniteSlider.prototype.start = $infiniteSlider => {
+	$infiniteSlider.running = true;
+	$infiniteSlider.autoRotation($infiniteSlider);
 
 	return false;
 };
 
-InfiniteSlider.prototype.stop = function(_infiniteSlider) {
-	clearTimeout(_infiniteSlider.t);
-	_infiniteSlider.running = false;
+InfiniteSlider.prototype.stop = $infiniteSlider => {
+	clearTimeout($infiniteSlider.t);
+	$infiniteSlider.running = false;
 
 	return false;
 };
 
-InfiniteSlider.prototype.arrowsClick = function(object, _infiniteSlider) {
-	if (!_infiniteSlider.animated) {
-		_infiniteSlider.autorotation = false;
+InfiniteSlider.prototype.arrowsClick = (object, $infiniteSlider) => {
+	const { animated, changeSlide, indexSlide } = $infiniteSlider;
+	if (!animated) {
+		$infiniteSlider.autorotation = false;
 		// Stop timer
-		clearTimeout(_infiniteSlider.t);
+		clearTimeout($infiniteSlider.t);
+		const clicked = $(object)
+			.parent()
+			.hasClass('next')
+			? indexSlide + 1
+			: indexSlide - 1;
 
-		if (
-			$(object)
-				.parent()
-				.hasClass('next')
-		)
-			var clicked = _infiniteSlider.indexSlide + 1;
-		else var clicked = _infiniteSlider.indexSlide - 1;
-
-		_infiniteSlider.changeSlide(
-			_infiniteSlider.indexSlide,
-			clicked,
-			_infiniteSlider
-		);
+		changeSlide(indexSlide, clicked, $infiniteSlider);
 	}
 
 	return false;
 };
 
-InfiniteSlider.prototype.controlsClick = function(object, _infiniteSlider) {
-	if (
-		!_infiniteSlider.animated &&
-		$(object)
-			.parent()
-			.hasClass('active') == false
-	) {
-		_infiniteSlider.autorotation = false;
+InfiniteSlider.prototype.controlsClick = (object, $infiniteSlider) => {
+	const { animated, changeSlide, indexSlide, container } = $infiniteSlider;
+	const listItem = $(object).parent();
+	if (!animated && listItem.hasClass('active') === false) {
+		$infiniteSlider.autorotation = false;
 		// Stop timer
-		clearTimeout(_infiniteSlider.t);
+		clearTimeout($infiniteSlider.t);
 
-		var clicked = $(object)
-			.parent()
-			.index();
+		const clicked = listItem.index();
 
-		$('> ul > li', _infiniteSlider.container).each(function() {
-			if ($(this).attr('data-slide') == clicked + 1) {
-				_infiniteSlider.changeSlide(
-					_infiniteSlider.indexSlide,
-					$(this).index(),
-					_infiniteSlider
-				);
+		$('> ul > li', container).each(function() {
+			const listItemIndex = parseInt($(this).attr('data-slide'), 10);
+			if (listItemIndex === clicked + 1) {
+				changeSlide(indexSlide, $(this).index(), $infiniteSlider);
 			}
 		});
 	}
@@ -225,325 +193,265 @@ InfiniteSlider.prototype.controlsClick = function(object, _infiniteSlider) {
 	return false;
 };
 
-InfiniteSlider.prototype.reset = function(_infiniteSlider) {
-	if (!_infiniteSlider.animated) {
-		_infiniteSlider.stop(_infiniteSlider);
-		_infiniteSlider.width = _infiniteSlider.container.width();
-		_infiniteSlider.height = _infiniteSlider.container.height();
-		$('> ul > li', _infiniteSlider.container).width(_infiniteSlider.width);
+InfiniteSlider.prototype.reset = $infiniteSlider => {
+	const { animated, mode, container, infos, start } = $infiniteSlider;
+	if (!animated) {
+		$infiniteSlider.stop($infiniteSlider);
+		$infiniteSlider.width = container.width();
+		$infiniteSlider.height = container.height();
+		$('> ul > li', container).width($infiniteSlider.width);
 
 		// Demask Specific
-		if (_infiniteSlider.mode == 'demask') {
-			$('> ul > li.inactive', _infiniteSlider.container).width(0);
-			$('> ul > li > img', _infiniteSlider.container).width(
-				_infiniteSlider.width
+		if (mode === 'demask') {
+			$('> ul > li.inactive', $infiniteSlider.container).width(0);
+			$('> ul > li > img', $infiniteSlider.container).width(
+				$infiniteSlider.width
 			);
 		}
 
 		// Columns Specific
-		if (_infiniteSlider.mode == 'columns') {
-			$('> ul > li > img', _infiniteSlider.container).each(function() {
-				var bg_main = $(this);
-				var wrapper = $(this).parent();
-				var wrapperWidth = wrapper.width();
-				var wrapperHeight = wrapper.height();
-				var colWidth = parseInt(
+		if (mode === 'columns') {
+			$('> ul > li > img', $infiniteSlider.container).each(function() {
+				const backgroundNain = $(this);
+				const wrapper = $(this).parent();
+				const wrapperWidth = wrapper.width();
+				const wrapperHeight = wrapper.height();
+				const colWidth = parseInt(
 					$(this)
 						.parent()
-						.attr('data-col-width')
+						.attr('data-col-width'),
+					10
 				);
-				var nbCols;
-				var columnsContent = '';
+				let nbCols;
+				let columnsContent = '';
 
 				// Background Image
-				var bgMainRatio = 1920 / 1080;
-				var wrapperRatio = wrapperWidth / wrapperHeight;
+				const bgMainRatio = 1920 / 1080;
+				const wrapperRatio = wrapperWidth / wrapperHeight;
 
 				// Background Main
 				if (bgMainRatio > wrapperRatio) {
 					// Calculate Width depending on ColWidth
-					var imgWidth = wrapperHeight * bgMainRatio;
+					let imgWidth = wrapperHeight * bgMainRatio;
 
 					nbCols = Math.ceil(imgWidth / colWidth);
-					if (nbCols % 2 != 1) nbCols += 1;
+
+					if (nbCols % 2 != 1) {
+						nbCols += 1;
+					}
 
 					imgWidth = nbCols * colWidth;
 
 					// Resize Containers
-					bg_main
+					backgroundNain
 						.width(imgWidth)
 						.height(imgWidth / bgMainRatio)
-						.css('left', -(bg_main.width() / 2 - wrapperWidth / 2) + 'px')
-						.css('top', -(bg_main.height() / 2 - wrapperHeight / 2) + 'px');
+						.css(
+							'left',
+							-(backgroundNain.width() / 2 - wrapperWidth / 2) + 'px'
+						)
+						.css(
+							'top',
+							-(backgroundNain.height() / 2 - wrapperHeight / 2) + 'px'
+						);
 
-					bg_main
+					backgroundNain
 						.siblings('.columns')
 						.width(imgWidth)
 						.height(imgWidth / bgMainRatio)
-						.css('left', -(bg_main.width() / 2 - wrapperWidth / 2) + 'px')
-						.css('top', -(bg_main.height() / 2 - wrapperHeight / 2) + 'px');
+						.css(
+							'left',
+							-(backgroundNain.width() / 2 - wrapperWidth / 2) + 'px'
+						)
+						.css(
+							'top',
+							-(backgroundNain.height() / 2 - wrapperHeight / 2) + 'px'
+						);
 				} else {
 					// Calculate Width depending on ColWidth
-					var imgWidth = wrapperWidth;
+					let imgWidth = wrapperWidth;
 
 					nbCols = Math.ceil(imgWidth / colWidth);
-					if (nbCols % 2 != 1) nbCols += 1;
+
+					if (nbCols % 2 != 1) {
+						nbCols += 1;
+					}
 
 					imgWidth = nbCols * colWidth;
 
-					// Resize Containers
-					bg_main
-						.width(imgWidth)
-						.height(imgWidth / bgMainRatio)
-						.css('left', -(bg_main.width() / 2 - wrapperWidth / 2) + 'px')
-						.css('top', -(bg_main.height() / 2 - wrapperHeight / 2) + 'px');
+					const applyBgStyles = element =>
+						element
+							.width(imgWidth)
+							.height(imgWidth / bgMainRatio)
+							.css(
+								'left',
+								-(backgroundNain.width() / 2 - wrapperWidth / 2) + 'px'
+							)
+							.css(
+								'top',
+								-(backgroundNain.height() / 2 - wrapperHeight / 2) + 'px'
+							);
 
-					bg_main
-						.siblings('.columns')
-						.width(imgWidth)
-						.height(imgWidth / bgMainRatio)
-						.css('left', -(bg_main.width() / 2 - wrapperWidth / 2) + 'px')
-						.css('top', -(bg_main.height() / 2 - wrapperHeight / 2) + 'px');
+					// Resize Containers
+					applyBgStyles(backgroundNain);
+					applyBgStyles(backgroundNain.siblings('.columns'));
 				}
 
 				// Fill Columns
-				for (var i = 0; i < nbCols; i++) {
-					var posLeft = -i * colWidth;
-					columnsContent +=
-						'<li><div><img src="' +
-						$(this)
-							.parent()
-							.attr('data-img-src') +
-						'" alt="" style="left: ' +
-						posLeft +
-						'px; width: ' +
-						bg_main.width() +
-						'px; height: ' +
-						bg_main.height() +
-						'px;" /></div></li>';
+				for (let i = 0; i < nbCols; i += 1) {
+					const imgSrc = $(this)
+						.parent()
+						.attr('data-img-src');
+					columnsContent += `<li><div><img src="${imgSrc} alt="" style="left: ${-i *
+						colWidth}px; width: ${backgroundNain.width()}px; height: ${backgroundNain.height()}px"/></div></li>`;
 				}
 
-				bg_main.siblings('.columns').html(columnsContent);
+				backgroundNain.siblings('.columns').html(columnsContent);
 			});
 		}
 
-		$(_infiniteSlider.infos).css(
+		$(infos).css(
 			'top',
-			$(_infiniteSlider.container).height() / 2 -
-				$(_infiniteSlider.infos).height() / 2 +
-				'px'
+			$(container).height() / 2 - $(infos).height() / 2 + 'px'
 		);
 
-		_infiniteSlider.start(_infiniteSlider);
+		start($infiniteSlider);
 	}
 };
 
-/* ////////////////////////////////////////////////////////////////////////////
-//
-// Change slide
-//
-/////////////////////////////////////////////////////////////////////////// */
+InfiniteSlider.prototype.changeSlide = (current, clicked, $infiniteSlider) => {
+	const {
+		autoRotation,
+		container,
+		controls,
+		count,
+		easing,
+		infos,
+		mode,
+		running,
+		speed,
+		reset,
+	} = $infiniteSlider;
 
-InfiniteSlider.prototype.changeSlide = function(
-	current,
-	clicked,
-	_infiniteSlider
-) {
-	_infiniteSlider.animated = true;
-	var direction = 'next';
-	if (clicked < current) direction = 'previous';
+	$infiniteSlider.animated = true;
+
+	let direction = 'next';
+	const listItem = $('> ul > li', container);
+
+	if (clicked < current) {
+		direction = 'previous';
+	}
 
 	// Check limits
-	if (clicked > _infiniteSlider.length) {
+	if (clicked > $infiniteSlider.length) {
 		clicked = 0;
 	} else if (clicked < 0) {
-		clicked = _infiniteSlider.length;
+		clicked = $infiniteSlider.length;
 	}
 
 	// Redefine active slide
-	$('> ul > li', _infiniteSlider.container)
-		.removeClass('active')
-		.addClass('inactive');
-	$('> ul > li', _infiniteSlider.container)
-		.eq(clicked)
-		.removeClass('inactive')
-		.addClass('active');
+	listItem.removeClass('active').addClass('inactive');
 
-	_infiniteSlider.index =
-		parseInt(
-			$('> ul > li.active', _infiniteSlider.container).attr('data-slide')
-		) - 1;
-	_infiniteSlider.indexSlide = $(
-		'> ul > li.active',
-		_infiniteSlider.container
-	).index();
+	const listItemClicked = listItem.eq(clicked);
+
+	listItemClicked.removeClass('inactive').addClass('active');
+
+	$infiniteSlider.index =
+		parseInt($('> ul > li.active', container).attr('data-slide'), 10) - 1;
+
+	$infiniteSlider.indexSlide = $('> ul > li.active', container).index();
 
 	// Redefine active control
-	$('li', _infiniteSlider.controls).removeClass('active');
-	$('li', _infiniteSlider.controls)
-		.eq(_infiniteSlider.index)
+	$('li', controls).removeClass('active');
+	$('li', controls)
+		.eq($infiniteSlider.index)
 		.addClass('active');
 
 	// Change Count
-	$(_infiniteSlider.count).html(
-		$('> ul > li.active', _infiniteSlider.container).attr('data-slide') +
+	$(count).html(
+		$('> ul > li.active', container).attr('data-slide') +
 			' / ' +
-			(_infiniteSlider.length + 1)
+			($infiniteSlider.length + 1)
 	);
 
 	// Animate Infos
-	$(_infiniteSlider.infos).fadeOut(_infiniteSlider.speed / 2, function() {
-		$('> li', _infiniteSlider.infos).hide();
-		$('> li', _infiniteSlider.infos)
+	$(infos).fadeOut(speed / 2, function() {
+		$('> li', infos).hide();
+		$('> li', infos)
 			.eq(clicked)
 			.show();
 		$(this)
 			.show()
 			.css('opacity', '0');
-		_infiniteSlider.reset(_infiniteSlider);
-		$(this).animate({ opacity: 1 }, _infiniteSlider.speed / 2);
+		reset($infiniteSlider);
+		$(this).animate({ opacity: 1 }, speed / 2);
 	});
 
+	const options = {
+		duration: speed,
+		easing,
+		complete() {
+			$infiniteSlider.animated = false;
+			$('> ul > li.inactive', container).hide();
+			if (running) {
+				autoRotation($infiniteSlider);
+			}
+		},
+	};
+
+	const animateIt = (pos, widthOrHeight, dir) => {
+		const opperator = dir === 'next' ? '-=' : '+=';
+		const size = dir !== 'next' ? '-' : '';
+
+		listItemClicked.css(pos, $infiniteSlider[widthOrHeight] + 'px').show();
+
+		// Animate slides
+		listItem.animate(
+			{ [pos]: opperator + `${size}${$infiniteSlider[widthOrHeight]}` },
+			options
+		);
+	};
+
+	const activeListItem = $('> ul > li.active', container);
+
+	const stopAnumation = () => {
+		$infiniteSlider.animated = false;
+
+		if (running) {
+			autoRotation($infiniteSlider);
+		}
+	};
+
 	// Animate Slides
-	if (_infiniteSlider.mode == 'slide') {
-		// Place new slide AFTER
-		if (direction == 'next') {
-			$('> ul > li', _infiniteSlider.container)
-				.eq(clicked)
-				.css('left', _infiniteSlider.width + 'px')
-				.show();
-
-			// Animate slides
-			$('> ul > li', _infiniteSlider.container).animate(
-				{ left: '-=' + _infiniteSlider.width },
-				{
-					duration: _infiniteSlider.speed,
-					easing: _infiniteSlider.easing,
-					complete: function() {
-						_infiniteSlider.animated = false;
-						$('> ul > li.inactive', _infiniteSlider.container).hide();
-						if (_infiniteSlider.running)
-							_infiniteSlider.autoRotation(_infiniteSlider);
-					},
-				}
-			);
-		}
-		// Place new slide BEFORE
-		else {
-			$('> ul > li', _infiniteSlider.container)
-				.eq(clicked)
-				.css('left', -_infiniteSlider.width + 'px')
-				.show();
-
-			// Animate slides
-			$('> ul > li', _infiniteSlider.container).animate(
-				{ left: '+=' + _infiniteSlider.width },
-				{
-					duration: _infiniteSlider.speed,
-					easing: _infiniteSlider.easing,
-					complete: function() {
-						_infiniteSlider.animated = false;
-						$('> ul > li.inactive', _infiniteSlider.container).hide();
-						if (_infiniteSlider.running)
-							_infiniteSlider.autoRotation(_infiniteSlider);
-					},
-				}
-			);
-		}
-	} else if (_infiniteSlider.mode == 'slidev') {
-		// Place new slide AFTER
-		if (direction == 'next') {
-			$('> ul > li', _infiniteSlider.container)
-				.eq(clicked)
-				.css('top', _infiniteSlider.height + 'px')
-				.show();
-
-			// Animate slides
-			$('> ul > li', _infiniteSlider.container).animate(
-				{ top: '-=' + _infiniteSlider.height },
-				{
-					duration: _infiniteSlider.speed,
-					easing: _infiniteSlider.easing,
-					complete: function() {
-						_infiniteSlider.animated = false;
-						$('> ul > li.inactive', _infiniteSlider.container).hide();
-						if (_infiniteSlider.running)
-							_infiniteSlider.autoRotation(_infiniteSlider);
-					},
-				}
-			);
-		}
-		// Place new slide BEFORE
-		else {
-			$('> ul > li', _infiniteSlider.container)
-				.eq(clicked)
-				.css('top', -_infiniteSlider.height + 'px')
-				.show();
-
-			// Animate slides
-			$('> ul > li', _infiniteSlider.container).animate(
-				{ top: '+=' + _infiniteSlider.height },
-				{
-					duration: _infiniteSlider.speed,
-					easing: _infiniteSlider.easing,
-					complete: function() {
-						_infiniteSlider.animated = false;
-						$('> ul > li.inactive', _infiniteSlider.container).hide();
-						if (_infiniteSlider.running)
-							_infiniteSlider.autoRotation(_infiniteSlider);
-					},
-				}
-			);
-		}
-	} else if (_infiniteSlider.mode == 'fade') {
+	if (mode === 'slide') {
+		animateIt('left', 'width', direction);
+	} else if (mode === 'slidev') {
+		animateIt('top', 'height', direction);
+	} else if (mode === 'fade') {
 		// Animate Slides
-		$('> ul > li.active', _infiniteSlider.container).fadeIn(
-			_infiniteSlider.speed,
-			function() {
-				$('> ul > li', _infiniteSlider.container)
-					.eq(current)
-					.hide();
-				_infiniteSlider.animated = false;
-				if (_infiniteSlider.running)
-					_infiniteSlider.autoRotation(_infiniteSlider);
+		activeListItem.fadeIn(speed, () => {
+			listItem.eq(current).hide();
+			stopAnumation();
+		});
+	} else if (mode === 'demask') {
+		activeListItem.animate(
+			{ width: $infiniteSlider.width },
+			speed,
+			easing,
+			() => {
+				$('> ul > li.inactive', container).width(0);
+				stopAnumation();
 			}
 		);
-	} else if (_infiniteSlider.mode == 'demask') {
-		$('> ul > li.active', _infiniteSlider.container).animate(
-			{ width: _infiniteSlider.width },
-			_infiniteSlider.speed,
-			_infiniteSlider.easing,
-			function() {
-				$('> ul > li.inactive', _infiniteSlider.container).width(0);
-				_infiniteSlider.animated = false;
-				if (_infiniteSlider.running)
-					_infiniteSlider.autoRotation(_infiniteSlider);
-			}
-		);
-	} else if (_infiniteSlider.mode == 'columns') {
-		$('> ul > li', _infiniteSlider.container)
-			.eq(clicked)
-			.css('left', '0');
-		$('> ul > li', _infiniteSlider.container)
-			.eq(current)
-			.find('.columns > li > div')
-			.animate(
-				{ width: 0 },
-				_infiniteSlider.speed,
-				_infiniteSlider.easing,
-				function() {
-					$('> ul > li', _infiniteSlider.container)
-						.eq(current)
-						.css('left', '100%');
-					$('> ul > li', _infiniteSlider.container)
-						.eq(current)
-						.find('.columns > li > div')
-						.width('100%');
-					_infiniteSlider.animated = false;
-					if (_infiniteSlider.running)
-						_infiniteSlider.autoRotation(_infiniteSlider);
-				}
-			);
+	} else if (mode === 'columns') {
+		const currentColumn = listItem.eq(current).find('.columns > li > div');
+		listItemClicked.css('left', '0');
+
+		currentColumn.animate({ width: 0 }, speed, easing, () => {
+			listItem.eq(current).css('left', '100%');
+			currentColumn.width('100%');
+			stopAnumation();
+		});
 	}
 };
 

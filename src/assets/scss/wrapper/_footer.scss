@@ -2,7 +2,7 @@
 @import '../variables';
 
 #footer {
-  background: $white;
+  background: $c-white;
   bottom: 0;
   left: 0;
   min-width: 980px;
@@ -44,7 +44,7 @@
 
           h2 {
             display: block;
-            font-family: $font-0, $font-1;
+            font-family: $font-family-oswald;
             font-size: 8px;
             left: 10px;
             letter-spacing: 0.1em;
@@ -64,7 +64,7 @@
 
           > div {
             > div {
-              font-family: $font-2;
+              font-family: $font-family-anonymous;
               font-size: 20px;
               white-space: nowrap;
 
@@ -143,7 +143,7 @@
                 a {
                   border-bottom: 1px solid $color-rangoon-green;
                   color: $color-rangoon-green;
-                  font-family: $font-2;
+                  font-family: $font-family-anonymous;
                   font-size: 15px;
                   font-weight: 700;
 
@@ -180,7 +180,7 @@
 
     .copyright {
       bottom: 33px;
-      font-family: $font-3, $font-1;
+      font-family: $font-family-roboto;
       font-size: 13px;
       left: 0;
       position: absolute;
@@ -188,7 +188,7 @@
 
     .credits {
       bottom: 33px;
-      font-family: $font-3, $font-1;
+      font-family: $font-family-roboto;
       font-size: 13px;
       position: absolute;
       right: 0;

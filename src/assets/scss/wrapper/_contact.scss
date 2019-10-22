@@ -20,7 +20,7 @@
         }
 
         h2 {
-          font-family: $font-0, $font-1;
+          font-family: $font-family-oswald;
           padding: 60px 0 55px;
           position: relative;
 
@@ -38,7 +38,7 @@
 
           .big {
             display: block;
-            font-family: $font-0, $font-1;
+            font-family: $font-family-oswald;
             font-size: 15px;
             letter-spacing: 0.65em;
             text-transform: uppercase;
@@ -46,7 +46,7 @@
         }
 
         p {
-          font-family: $font-2;
+          font-family: $font-family-anonymous;
           font-size: 14px;
           line-height: 28px;
           max-width: 380px;
@@ -77,7 +77,7 @@
                 border-bottom: 1px solid transparent;
                 color: $color-rangoon-green;
                 display: inline-block;
-                font-family: $font-0, $font-1;
+                font-family: $font-family-oswald;
                 font-size: 8px;
                 letter-spacing: 0.1em;
                 margin: 24px 0 0 10px;
@@ -179,7 +179,7 @@
 
                 h2 {
                   float: left;
-                  font-family: $font-0, $font-1;
+                  font-family: $font-family-oswald;
                   padding: 0 25px;
                   position: relative;
 
@@ -216,7 +216,7 @@
 
                   .small {
                     display: block;
-                    font-family: $font-0, $font-1;
+                    font-family: $font-family-oswald;
                     font-size: 8px;
                     left: 10px;
                     letter-spacing: 0.1em;
@@ -227,7 +227,7 @@
 
                   .big {
                     display: block;
-                    font-family: $font-2;
+                    font-family: $font-family-anonymous;
                     font-size: 17px;
                     line-height: 50px;
                     padding-top: 15px;
@@ -266,7 +266,7 @@
               padding: 85px 80px 70px;
 
               li {
-                font-family: $font-2;
+                font-family: $font-family-anonymous;
                 position: relative;
 
                 h3 {
@@ -293,9 +293,9 @@
                 }
 
                 > .nb {
-                  color: $white;
+                  color: $c-white;
                   display: block;
-                  font-family: $font-0, $font-1;
+                  font-family: $font-family-oswald;
                   font-size: 8px;
                   left: -41px;
                   letter-spacing: 0.1em;
@@ -307,7 +307,7 @@
 
             .sectors {
               color: transparent;
-              font-family: $font-2;
+              font-family: $font-family-anonymous;
               padding: 60px 38px 45px;
               position: relative;
               transition-delay: 0.25s;
@@ -327,7 +327,7 @@
               }
 
               &.loaded {
-                color: $white;
+                color: $c-white;
               }
             }
 
